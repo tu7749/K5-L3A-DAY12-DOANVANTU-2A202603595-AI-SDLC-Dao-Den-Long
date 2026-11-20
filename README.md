@@ -1,6 +1,6 @@
 # Đảo Đèn Lồng
 
-**Video demo: chưa quay.** Bản triển khai Phase 1 theo PRD-0 / Test Contract v1.0. Mốc bàn giao hiện tại: `phase-1`. Chưa có ticket Phase 2–4 hay GitHub Release. README gốc được giữ tại [docs/LAB-README.md](docs/LAB-README.md).
+**Video demo: chưa quay.** Bản triển khai Phase 1 theo PRD-0 / Test Contract v1.0. Mốc bàn giao hiện tại: `phase-1`. Phase 2–4 chưa phát hành và chưa cần thực hiện (người dùng xác nhận); Release cuối sẽ làm ở Phase 4. README gốc được giữ tại [docs/LAB-README.md](docs/LAB-README.md).
 
 Game 3D góc nhìn thứ ba: cùng Mây gom đom đóm, thắp năm chiếc đèn và tránh Bóng Mực trước bình minh.
 
@@ -53,12 +53,14 @@ Snapshot 0 trước input; sparse frames giữ giá trị; nút kích hoạt fal
 
 Đảo nổi giữa tầng mây, cây và đá procedural, vòng sáng quanh đèn, sương mỏng dần, vệt pulse và lời nhắc hành trình. Các chi tiết thuộc renderer, không thêm thực thể gameplay vào headless. Test kiểm tra tính tất định lõi dùng chung; chưa có ảnh bằng chứng đồ họa.
 
-## Còn thiếu trước khi nộp cuối
+## Các bước tiếp theo
 
-- Ticket-02/03/04 và triển khai tương ứng.
+- Khi phát hành: tiếp nhận Ticket-02/03/04 rồi triển khai tương ứng. Hiện chưa đến phạm vi này.
 - Chơi thử trực tiếp, reviewer độc lập, ảnh và video mp4 dưới 5 phút.
 - Số liệu token/chi phí thực tế, hiệu năng theo ticket khi có.
 - Commit/tag đúng mốc từng phase, push repo public, Release v1.0.0. Không dựng lịch sử phase giả.
 - Tên repo theo SUBMISSION cần hậu tố `-Dao-Den-Long`, hiện chưa đổi tên.
 
 Tài liệu lab: [CHECKPOINTS](CHECKPOINTS.md), [GUIDE](GUIDE.md), [SUBMISSION](SUBMISSION.md), [RULES](RULES.md), [RUBRIC](RUBRIC.md). Nguồn: [CREDITS](CREDITS.md), giấy phép: [LICENSE](LICENSE).
+
+Rà soát checkpoint Phase 1: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).

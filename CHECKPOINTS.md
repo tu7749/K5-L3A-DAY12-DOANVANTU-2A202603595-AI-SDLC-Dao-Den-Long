@@ -5,6 +5,8 @@
 > Cách làm: [GUIDE.md](GUIDE.md). Nộp bài: [SUBMISSION.md](SUBMISSION.md).
 > Cách trình bày bằng chứng, tên file và cấu trúc thư mục do bạn chọn. Các gợi ý dưới đây chỉ là ví dụ.
 
+> **Trạng thái hiện tại:** chỉ Phase 1 đã phát hành (người dùng xác nhận). CP2–CP4 chờ ticket; chưa đến hạn thực hiện. Rà soát: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).
+
 ## Lịch 4 giờ
 
 | Checkpoint | Mốc | Thời lượng |
@@ -44,9 +46,9 @@ Mỗi checkpoint phase (CP1 đến CP4) có cùng một khung, nhưng nội dung
 
 Việc cần làm:
 - [ ] Tạo **repo cá nhân, public** trên GitHub, đặt tên theo [SUBMISSION.md](SUBMISSION.md).
-- [ ] Chọn công cụ AI, engine và ngôn ngữ. Cài và chạy thử một chương trình "hello" 3D hoặc headless để chắc môi trường ổn.
+- [x] Chọn công cụ AI, engine và ngôn ngữ. Cài và chạy thử một chương trình "hello" 3D hoặc headless để chắc môi trường ổn.
 - [ ] Đăng nhập claude.ai, mở lab board, thử mở tab Phase 1 và hỏi trợ giảng một câu bất kỳ để chắc trợ giảng hoạt động.
-- [ ] Tạo sẵn nơi ghi chép (một file hoặc một thư mục tùy bạn) cho giả định, nhật ký dùng AI và bằng chứng.
+- [x] Tạo sẵn nơi ghi chép (một file hoặc một thư mục tùy bạn) cho giả định, nhật ký dùng AI và bằng chứng.
 - [ ] Kiểm tra hạn nộp từng phase theo thông báo của Coach.
 
 Tự kiểm: clone repo sang thư mục khác và chạy được chương trình thử.
@@ -58,17 +60,17 @@ Tự kiểm: clone repo sang thư mục khác và chạy được chương trìn
 **Mục tiêu:** từ một mô tả tổng quát và mơ hồ, làm ra một bản chơi được của màn đầu tiên, kèm chế độ headless theo Test Contract, và chứng minh nó đúng.
 
 Gợi ý:
-- [ ] Đọc PRD-0 hai lần. Lần một đọc để hiểu game. Lần hai gạch chân những chỗ mơ hồ và những chỗ **bắt buộc chính xác** (Test Contract).
-- [ ] Viết giả định cho từng chỗ mơ hồ, và các con số bạn tự chọn. Những con số này sẽ cần khai báo theo yêu cầu của contract.
-- [ ] Tách logic game khỏi phần hiển thị để chạy được headless.
-- [ ] Tự viết vài scenario nhỏ và kiểm tra đầu ra đúng định dạng.
-- [ ] Chạy hai lần cùng đầu vào và so sánh, nếu contract yêu cầu tính tất định.
+- [x] Đọc PRD-0 hai lần. Lần một đọc để hiểu game. Lần hai gạch chân những chỗ mơ hồ và những chỗ **bắt buộc chính xác** (Test Contract).
+- [x] Viết giả định cho từng chỗ mơ hồ, và các con số bạn tự chọn. Những con số này sẽ cần khai báo theo yêu cầu của contract.
+- [x] Tách logic game khỏi phần hiển thị để chạy được headless.
+- [x] Tự viết vài scenario nhỏ và kiểm tra đầu ra đúng định dạng.
+- [x] Chạy hai lần cùng đầu vào và so sánh, nếu contract yêu cầu tính tất định.
 - [ ] Làm đúng các bàn giao liệt kê trong PRD-0.
 
 Tự kiểm:
 - [ ] Clone sạch, làm theo README của bạn, chạy được game.
-- [ ] Mỗi yêu cầu chính có bằng chứng; chỗ chưa đạt đã ghi.
-- [ ] Đã gắn tag `phase-1` và push.
+- [x] Mỗi yêu cầu chính có bằng chứng; chỗ chưa đạt đã ghi.
+- [x] Đã gắn tag `phase-1` và push.
 
 ---
 
@@ -125,8 +127,8 @@ Tự kiểm:
 
 **Mục tiêu:** hoàn tất ghi chép, quay video, kiểm tra lần cuối, nộp.
 
-- [ ] **Retro ngắn:** điều gì hiệu quả hoặc không khi làm với AI; những lần AI sai và cách bạn phát hiện; harness nào giúp nhiều nhất; token/chi phí ước tính và cách bạn tiết kiệm; nếu làm lại thì đổi gì.
+- [x] **Retro ngắn:** điều gì hiệu quả hoặc không khi làm với AI; những lần AI sai và cách bạn phát hiện; harness nào giúp nhiều nhất; token/chi phí ước tính và cách bạn tiết kiệm; nếu làm lại thì đổi gì.
 - [ ] **Video demo `.mp4` dưới 5 phút**: chơi thử và cho thấy bằng chứng game chạy đúng. Đính kèm Release `v1.0.0` hoặc commit vào `docs/demo/demo.mp4` (dưới 100 MB). Đặt link ở đầu README.
-- [ ] Rà soát repo: không có `.env`, API key, token. Lịch sử git còn đủ file harness.
+- [x] Rà soát repo: không có `.env` được track; quét mẫu khóa phổ biến trong lịch sử không có ứng viên. Harness còn trong lịch sử. Quét mẫu không bảo đảm phát hiện mọi loại bí mật.
 - [ ] Rà soát bằng danh sách ở [SUBMISSION.md](SUBMISSION.md) mục "Checklist trước khi nộp".
 - [ ] Nộp link repo public theo hướng dẫn của Coach.
