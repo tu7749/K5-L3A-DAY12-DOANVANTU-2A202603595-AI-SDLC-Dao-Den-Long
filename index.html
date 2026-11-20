@@ -1,10 +1,10 @@
-<!doctype html>
-<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Đảo Đèn Lồng · Đêm 1</title><link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head>
-<body>
-<main id="world" aria-label="Game Đảo Đèn Lồng 3D"></main>
-<header><div class="brand"><span class="emblem">✦</span><div>ĐẢO ĐÈN LỒNG<small>ĐÊM 1 · ĐẢO BẾN</small></div></div><button id="pause">Tạm dừng</button></header>
-<section id="hud" aria-live="polite"><div><small>NGỌN LỬA</small><strong id="health"></strong></div><div><small>ĐOM ĐÓM</small><strong id="carry"></strong></div><div><small>ĐÈN ĐÃ THẮP</small><strong id="lit"></strong></div><div><small>TRƯỚC BÌNH MINH</small><strong id="time"></strong></div><div><small>ĐIỂM</small><strong id="score"></strong></div></section>
-<div id="hint">Đi tìm những đốm sáng giữa màn sương.</div><div id="toast" aria-live="polite"></div>
-<footer><span><kbd>W A S D</kbd> di chuyển</span><span><kbd>Space</kbd> nhảy</span><span><kbd>E</kbd> nạp đèn</span><span><kbd>Q</kbd> tỏa sáng · 2 đom đóm</span><span>Kéo chuột để xoay camera</span></footer>
-<section id="overlay"><div class="intro"><span class="eyebrow">MỘT HÀNH TRÌNH NHỎ GIỮA BIỂN MÂY</span><h1>Giữ một đốm sáng.<br>Thắp cả hòn đảo.</h1><p>Bước cùng Mây qua màn sương đen. Gom đom đóm, thắp lại năm Đèn Lồng Lớn và đưa ánh sáng trở về Đảo Bến.</p><div class="rules"><span>✦ Mỗi đèn cần 5 đom đóm</span><span>◈ Ánh đèn xua Bóng Mực</span><span>♡ Giữ lấy 3 ngọn lửa</span></div><button id="start">Bắt đầu Đêm 1</button><small>WASD để đi · E để nạp · Q để tỏa sáng · Space để nhảy</small></div></section>
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Đảo Đèn Lồng · Ba hòn đảo</title><link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head><body>
+<main id="world" aria-label="Đảo Đèn Lồng 3D"></main>
+<header><div class="brand">✦ ĐẢO ĐÈN LỒNG<small id="nightLabel"></small></div><button id="pause">Tạm dừng · Esc / P</button></header>
+<section id="hud"><div class="health"><small>NGỌN LỬA</small><strong id="health"></strong></div><div class="clock"><small>TRƯỚC BÌNH MINH</small><strong id="time"></strong></div><div class="progress"><small>ĐÈN ĐÃ THẮP</small><strong id="lit"></strong><small>ĐIỂM <b id="score"></b></small></div></section>
+<div id="toast" role="status"></div><div id="wind"></div><div id="arrow" hidden>▲ <span></span></div>
+<div id="hint"></div><div id="inventory"><div id="slots"></div><small id="carry"></small></div><div id="cooldowns"><div id="dash"></div><div id="pulse"></div><div id="charm"></div></div>
+<footer>WASD · di chuyển &nbsp; Space · nhảy &nbsp; Shift · lướt &nbsp; E · nạp đèn &nbsp; Q · tỏa sáng &nbsp; Kéo chuột · xoay camera</footer>
+<section id="overlay"><div class="panel"><span class="eyebrow">MỘT HÀNH TRÌNH GIỮA BIỂN MÂY</span><h1 id="title"></h1><p id="description"></p><div id="actions"></div></div></section>
+<dialog id="settings"><h2>Cài đặt</h2><label>Âm lượng <input id="volume" type="range" min="0" max="1" step="0.05"></label><label>Độ nhạy chuột <input id="sensitivity" type="range" min="0.001" max="0.015" step="0.001"></label><button id="closeSettings">Xong</button></dialog>
 <script type="module" src="src/browser.js"></script></body></html>
