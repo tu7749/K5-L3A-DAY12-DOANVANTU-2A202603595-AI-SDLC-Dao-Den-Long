@@ -1,10 +1,10 @@
 # Đảo Đèn Lồng
 
-- Sources: docs/PRD-0.md, docs/Ticket-02.md, then docs/Ticket-03.md overrides oil, win, capacity and scoring. Phase 4 not supplied.
+- Sources: docs/PRD-0.md, docs/Ticket-02.md, then docs/Ticket-03.md overrides oil, win, capacity and scoring. docs/Ticket-04.md finalizes release1.0.0 and Contract1.3.
 - Build: npm ci && npm run build. Play: npm start. Optional PORT changes server port.
 - Verify: npm run verify. Headless scenario proof: node scripts/proof-phase3.mjs (Phase 2 script is historical; use tag phase-2).
 - Core src/game.js and maps.js serve browser/headless; fixed 60 Hz, world Y up.
-- v1.2 tick order in Ticket-02 is mandatory. Pause advances tick, freezes sim_tick and every gameplay timer. Capture previous input before updating it; buttons are rising edges.
+- v1.3 retains v1.2 tick order in Ticket-02 is mandatory. Pause advances tick, freezes sim_tick and every gameplay timer. Capture previous input before updating it; buttons are rising edges.
 - Tuning in game.contract.json must match latest ticket. Score motes on deposit/refuel (+5), never pickup. Fuel uses integer units of 1/60; natural+drain loss and lantern_out occur in step 2 before interactions. Safe iff lit and fuelUnits>=1800. Never decide thresholds from rounded snapshots. Drop floor(carried/2). Pulse uses 3D; pickup has height tolerance.
 - Spawned/dropped entities interact only next tick. IDs deterministic and unique. Preserve scenario overrides; invalid data exit 2.
 - Regression tests changed by a new ticket must have reasons in docs/notes. Keep old phase tags immutable.
@@ -16,3 +16,8 @@
 - Phase 3 browser QA: scripts/browser-phase3.mjs; save outputs only in docs/proof/phase-3, preserve older evidence and tags. Settings colorblind must persist and include non-color lamp shape/tears.
 
 - Optional browser assistance is enabled via Game fifth options argument, never headless. Keep standard6m/s/20 initial/4s/30 cap; assistance9m/s/40 initial/2s/60 cap. Assistance wins at all_lit and browser automatically advances to the next night; after night3 show dawn. Extra spawn points only in assistance; settings apply on next night/retry. Preserve phase tags.
+
+- Phase4 commands: npm run bench -- --seed 42 --duration 30 --out bench.json (spaces between flags/values); npm run soak -- --seed 7 --nights 10 --out soak.json. Use exact examples in README. Benchmark/soak always standard, disable custom entities and assistance.
+- Benchmark opens isolated Chrome app at1280x720; 3s warmup, frame dt metrics, peak_mem_mb=null for web. Never replace metrics with constants. Soak measures real RSS, uses published jitless/GC runtime flags.
+- Leaderboard saves via local server API to .local/leaderboard.json; ignore runtime data. Static fallback localStorage has UI export; CLI export reads disk server data.
+- Release: npm run package:release; never include secrets/runtime profiles/data. GitHub credential helper remains memory-only. Keep phase tags immutable after push. Video belongs to user; do not claim it exists until provided.

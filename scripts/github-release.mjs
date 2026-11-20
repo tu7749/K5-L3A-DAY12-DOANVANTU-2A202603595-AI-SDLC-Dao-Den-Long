@@ -1,0 +1,14 @@
+// GitHub credential stays only in process memory; never print or persist it.
+import {execFileSync} from 'node:child_process';import {readFileSync} from 'node:fs';import {basename} from 'node:path';
+const args=process.argv.slice(2),remote=execFileSync('git',['remote','get-url','origin'],{encoding:'utf8'}).trim();const match=remote.match(/github\.com[:/]([^/]+)\/(.+?)(?:\.git)?$/);if(!match)throw Error('Remote phải là GitHub.');let [owner,repo]=match.slice(1);
+let secret;try{secret=execFileSync('git',['credential','fill'],{input:'protocol=https\nhost=github.com\n\n',encoding:'utf8',env:{...process.env,GIT_TERMINAL_PROMPT:'0'},stdio:['pipe','pipe','pipe']});}catch{throw Error('Không tìm thấy credential GitHub cho API.');}
+const password=secret.split('\n').find(l=>l.startsWith('password='))?.slice(9);secret=null;if(!password)throw Error('Credential không có token.');
+async function api(path,{method='GET',body,bytes}={}){const response=await fetch(path.startsWith('https://')?path:'https://api.github.com'+path,{method,headers:{Authorization:'Bearer '+password,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'Dao-Den-Long-Release','Content-Type':bytes?'application/zip':'application/json'},body:bytes??(body===undefined?undefined:JSON.stringify(body))});if(response.status===404&&method==='GET')return null;if(!response.ok)throw Error(`GitHub API ${method} trả ${response.status}`);return response.status===204?null:response.json();}
+const info=await api(`/repos/${owner}/${repo}`);if(!info)throw Error('Không tìm thấy repo.');
+if(args[0]==='--inspect'){console.log(JSON.stringify({name:info.name,private:info.private,url:info.html_url,push:info.permissions?.push}));}
+else if(args[0]==='--rename'&&args[1]){const updated=await api(`/repos/${owner}/${repo}`,{method:'PATCH',body:{name:args[1],private:false}});execFileSync('git',['remote','set-url','origin',updated.clone_url]);console.log(JSON.stringify({name:updated.name,private:updated.private,url:updated.html_url}));}
+else if(args[0]==='--publish'&&args[1]&&args[2]){
+ if(info.private)throw Error('Repo vẫn private; chưa publish.');
+ let release=await api(`/repos/${owner}/${repo}/releases/tags/v1.0.0`);const sha=execFileSync('git',['rev-parse','v1.0.0^{}'],{encoding:'utf8'}).trim();if(!release)release=await api(`/repos/${owner}/${repo}/releases`,{method:'POST',body:{tag_name:'v1.0.0',target_commitish:sha,name:'Đảo Đèn Lồng v1.0.0',body:readFileSync(args[2],'utf8'),draft:false,prerelease:false}});
+ const name=basename(args[1]);let asset=release.assets.find(a=>a.name===name);if(!asset)asset=await api(release.upload_url.replace(/\{.*$/,'')+'?name='+encodeURIComponent(name),{method:'POST',bytes:readFileSync(args[1])});console.log(JSON.stringify({release_url:release.html_url,download_url:asset.browser_download_url,tag:release.tag_name,asset_bytes:asset.size}));
+}else throw Error('Dùng --inspect | --rename name | --publish zip notes.md');

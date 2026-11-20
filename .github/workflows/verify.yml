@@ -11,3 +11,5 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run verify
+      - run: npm run soak -- --seed 7 --nights 10 --out /tmp/soak.json
+      - run: node scripts/validate-proof.mjs

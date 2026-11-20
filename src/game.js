@@ -5,7 +5,7 @@ const direction=(from,to)=>{const d=distance(from,to);return d?[ (to[0]-from[0])
 const compare=(a,b)=>a.id.localeCompare(b.id,undefined,{numeric:true});
 export class Game{
   constructor(tuning,seed=1,scenario={},night=1,options={}){
-    this.assistance=options.assistance===true;this.t=tuning;this.night=night;this.map=makeMap(night);this.seed=seed>>>0;this.tick=0;this.sim_tick=0;this.state='playing';this.score=0;this.previous={};this.events=[];
+    this.benchmark=options.benchmark===true;this.assistance=!this.benchmark&&options.assistance===true;this.t=tuning;this.night=night;this.map=makeMap(night);this.seed=seed>>>0;this.tick=0;this.sim_tick=0;this.state='playing';this.score=0;this.previous={};this.events=[];
     this.timeTicks=(scenario.time_left_s??tuning[`night${night}_duration_s`])*60;
     const p=scenario.player??{};
     this.player={pos:[...(p.pos??[0,0,0])],vel:[0,0,0],carried:p.carried??0,flames:p.flames??3,grounded:false};
@@ -77,7 +77,7 @@ export class Game{
       const l=this.lanterns.find(l=>l.id===s.target_lantern_id);
       if(!l?.lit||l.fuelUnits>=1800||distance(s.pos,l.pos)>2){s.state='wander';s.target_lantern_id=null;return;}
       if(d<=6&&!this.respawn){s.state='chase';s.target_lantern_id=null;}else return;
-    }else s.state=s.state==='chase'?(d>18?'wander':'chase'):(d<=12?'chase':'wander');
+    }else s.state=this.benchmark?'wander':s.state==='chase'?(d>18?'wander':'chase'):(d<=12?'chase':'wander');
     if(this.respawn)s.state='wander';
     let target=this.player.pos;
     if(s.state==='wander'){
@@ -86,7 +86,7 @@ export class Game{
       s.target_lantern_id=l?.id??null;target=l?.pos??this.map.shadePoints[(Number(s.id.replace(/\D/g,''))||0)%this.map.shadePoints.length];
       if(l?.lit&&distance(s.pos,l.pos)<=2){s.state='drain';return;}
     }else s.target_lantern_id=null;
-    this.moveShade(s,direction(s.pos,target),Math.min(distance(s.pos,target),(s.state==='chase'?(this.night===3?4.5:4):1)*DT));
+    this.moveShade(s,direction(s.pos,target),Math.min(distance(s.pos,target),(this.night===3?4.5:4)*DT));
     if(s.state==='wander'&&s.target_lantern_id){const l=this.lanterns.find(l=>l.id===s.target_lantern_id);if(l?.lit&&l.fuelUnits<1800&&distance(s.pos,l.pos)<=2)s.state='drain';}
   }
   movePlayer(input,edge){
@@ -109,7 +109,13 @@ export class Game{
     if(p.pos[1]<-10){const lost=p.carried;p.carried=0;p.flames=Math.max(0,p.flames-1);this.respawn=60;this.dashTicks=0;this.launch=null;p.vel=[0,0,0];this.emit('player_hit',{by:'fall',flames:p.flames,dropped:0,lost});}
   }
   moveShade(s,dir,amount,allowSafe=false){const steps=Math.max(1,Math.ceil(amount/.1));for(let i=0;i<steps;i++){const dest=[s.pos[0]+dir[0]*amount/steps,s.pos[1],s.pos[2]+dir[1]*amount/steps];const y=floorBelow(this.night,[dest[0],s.pos[1]+.12,dest[2]]);if(!Number.isFinite(y)||wall(this.night,s.pos,dest)||(!allowSafe&&this.safe(dest)))break;dest[1]=y+.8;s.pos=dest;}}
+  stepBenchmark(){
+    this.tick++;this.sim_tick++;this.events=[];this.safeEject.clear();
+    for(const s of this.shades){const l=this.lanterns.find(l=>l.lit&&distance(l.pos,s.pos)<6-1e-8);if(l){if(!s.eject)s.eject=30;this.safeEject.add(s.id);this.moveShade(s,direction(l.pos,s.pos),(6-distance(l.pos,s.pos))/s.eject,true);s.eject--;}else s.eject=0;this.updateShade(s);}
+    return this.events;
+  }
   step(input={}){
+    if(this.benchmark)return this.stepBenchmark();
     if(!['playing','paused'].includes(this.state))return [];
     this.events=[];this.tick++;const previous=this.previous,edge=k=>!!input[k]&&!previous[k];
     if(edge('pause')){this.state=this.state==='paused'?'playing':'paused';this.emit(this.state==='paused'?'paused':'resumed');}

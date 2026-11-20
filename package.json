@@ -1,1 +1,19 @@
-{"name":"dao-den-long","version":"0.1.0","private":true,"type":"module","scripts":{"start":"node scripts/serve.mjs","build":"node scripts/build.mjs","headless":"node src/headless.mjs","test":"node --test","verify":"npm test && npm run build"},"dependencies":{"three":"0.180.0"}}
+{
+  "name": "dao-den-long",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "headless": "node src/headless.mjs",
+    "test": "node --test",
+    "verify": "npm test && npm run build",
+    "bench": "node scripts/bench.mjs",
+    "soak": "node --jitless --expose-gc --max-semi-space-size=1 scripts/soak.mjs",
+    "package:release": "npm run build && node scripts/package-release.mjs"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  }
+}

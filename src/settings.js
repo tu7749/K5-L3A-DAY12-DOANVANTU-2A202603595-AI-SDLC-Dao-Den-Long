@@ -1,0 +1,5 @@
+export const DEFAULT_BINDINGS={left:'KeyA',right:'KeyD',forward:'KeyW',back:'KeyS',jump:'Space',dash:'ShiftLeft',interact:'KeyE',pulse:'KeyQ',pause:'Escape'};
+export const ACTION_NAMES={left:'Sang trái',right:'Sang phải',forward:'Đi tới',back:'Lùi lại',jump:'Nhảy',dash:'Lướt',interact:'Nạp / châm dầu',pulse:'Tỏa Sáng',pause:'Tạm dừng'};
+export function validateBindings(bindings){if(!bindings||Object.keys(DEFAULT_BINDINGS).some(k=>typeof bindings[k]!=='string'||!bindings[k]))throw Error('Thiếu phím điều khiển.');const values=Object.keys(DEFAULT_BINDINGS).map(k=>bindings[k]);if(new Set(values).size!==values.length)throw Error('Phím bị trùng. Mỗi hành động cần một phím riêng.');return {...bindings};}
+export function rebind(bindings,action,code){if(!(action in DEFAULT_BINDINGS))throw Error('Hành động không hợp lệ.');return validateBindings({...bindings,[action]:code});}
+export const keyLabel=code=>code.replace(/^Key/,'').replace(/^Digit/,'').replace('Arrow','Mũi tên ').replace('Left',' trái').replace('Right',' phải');
