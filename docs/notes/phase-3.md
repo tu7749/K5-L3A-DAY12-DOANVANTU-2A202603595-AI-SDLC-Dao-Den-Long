@@ -50,3 +50,5 @@ Nguồn: docs/Ticket-03.md. Kế hoạch: thay trạng thái đèn/dầu và lu�
 ## Kiểm tra bản clone sạch
 
 Clone --no-local commit 48c48ae vào /tmp/day12-phase3-clean-20261120. npm ci --offline với cache chứa tarball đã tải (không dùng node_modules repo gốc): thêm1 package, audit0 vulnerabilities. npm run verify:53/53 test đạt, không skip, build dist thành công.
+
+- Khi chạy browser QA lần thứ hai cùng profile tạm, cài đặt colorblind=true được lưu đúng khiến assertion màu mặc định thất bại. Script QA nay đặt baseline màu thường qua UI trước khi kiểm tra cả2 chế độ và khả năng lưu; không đổi luật game.

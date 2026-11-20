@@ -8,6 +8,7 @@ const dir='docs/proof/phase-3',quiet={random_motes:false,random_shades:false,ran
 try{await call('Runtime.enable');await call('Page.enable');await call('Emulation.setDeviceMetricsOverride',{width:1280,height:720,deviceScaleFactor:1,mobile:false});
 for(let i=0;i<100;i++){if(await evaluate('!!window.lanternDiagnostics'))break;await delay(100);}assert.equal(await evaluate('!!window.lanternDiagnostics'),true);
 const screenshot=async name=>{const r=await call('Page.captureScreenshot',{format:'png'});writeFileSync(`${dir}/${name}.png`,Buffer.from(r.data,'base64'));};
+await evaluate('document.getElementById("colorblind").checked=false;document.getElementById("colorblind").dispatchEvent(new Event("change"))');await delay(100);
 await evaluate('document.querySelector("#actions button").click()');await evaluate('document.querySelector("#actions button").click()');
 const report={viewport:[1280,720],browser:await call('Browser.getVersion'),errors,nights:[]};
 for(const night of [1,2,3]){await evaluate(`lanternDiagnostics.startNight(${night})`);await delay(400);const a=await evaluate('({frames:lanternDiagnostics.fps.frames,elapsed:lanternDiagnostics.fps.elapsed})');await delay(3000);const b=await evaluate('({frames:lanternDiagnostics.fps.frames,elapsed:lanternDiagnostics.fps.elapsed})');const fps=(b.frames-a.frames)/(b.elapsed-a.elapsed);assert.ok(fps>=30);report.nights.push({night,average_fps:fps});}

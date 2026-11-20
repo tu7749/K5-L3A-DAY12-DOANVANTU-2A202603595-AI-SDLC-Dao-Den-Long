@@ -14,15 +14,15 @@
   "nights": [
     {
       "night": 1,
-      "average_fps": 60.00200006666903
+      "average_fps": 60.003315100281895
     },
     {
       "night": 2,
-      "average_fps": 60.00400026668377
+      "average_fps": 60.00331510028112
     },
     {
       "night": 3,
-      "average_fps": 60.00400026668497
+      "average_fps": 60.005304336295595
     }
   ],
   "normal": {
