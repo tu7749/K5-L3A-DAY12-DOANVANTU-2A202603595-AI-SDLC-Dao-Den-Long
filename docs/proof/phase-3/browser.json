@@ -1,0 +1,118 @@
+{
+  "viewport": [
+    1280,
+    720
+  ],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/157.0.8103.79",
+    "revision": "@6dc9bc3bdaea5c35ed6d41fceab2f7a3a2227c4f",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36",
+    "jsVersion": "15.7.112.43"
+  },
+  "errors": [],
+  "nights": [
+    {
+      "night": 1,
+      "average_fps": 60.00200006666903
+    },
+    {
+      "night": 2,
+      "average_fps": 60.00400026668377
+    },
+    {
+      "night": 3,
+      "average_fps": 60.00400026668497
+    }
+  ],
+  "normal": {
+    "visuals": {
+      "lamps": [
+        {
+          "scale_y": 1,
+          "tear_visible": false,
+          "fuelbar_visible": true
+        },
+        {
+          "scale_y": 0.8,
+          "tear_visible": true,
+          "fuelbar_visible": false
+        },
+        {
+          "scale_y": 0.8,
+          "tear_visible": true,
+          "fuelbar_visible": false
+        },
+        {
+          "scale_y": 0.8,
+          "tear_visible": true,
+          "fuelbar_visible": false
+        },
+        {
+          "scale_y": 0.8,
+          "tear_visible": true,
+          "fuelbar_visible": false
+        }
+      ],
+      "shade_accents": [
+        [
+          "7a3cff",
+          "7a3cff",
+          "7a3cff"
+        ]
+      ]
+    },
+    "slots": 20,
+    "carry": "20 / 20 đom đóm",
+    "time": "0:25"
+  },
+  "low_fuel_blinks": true,
+  "colorblind": {
+    "visuals": {
+      "lamps": [
+        {
+          "scale_y": 1,
+          "tear_visible": false,
+          "fuelbar_visible": false
+        },
+        {
+          "scale_y": 0.8,
+          "tear_visible": true,
+          "fuelbar_visible": false
+        },
+        {
+          "scale_y": 0.8,
+          "tear_visible": true,
+          "fuelbar_visible": false
+        },
+        {
+          "scale_y": 0.8,
+          "tear_visible": true,
+          "fuelbar_visible": false
+        },
+        {
+          "scale_y": 0.8,
+          "tear_visible": true,
+          "fuelbar_visible": false
+        }
+      ],
+      "shade_accents": [
+        [
+          "00b3ff",
+          "00b3ff",
+          "00b3ff"
+        ]
+      ]
+    },
+    "warning_visible": true,
+    "warning_text": "⚠ ",
+    "color": "rgb(255, 255, 255)",
+    "stored": {
+      "volume": 0.35,
+      "sensitivity": 0.006,
+      "colorblind": true
+    }
+  },
+  "colorblind_restored": true,
+  "dawn_reason": "dawn_survived"
+}

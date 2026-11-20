@@ -1,8 +1,8 @@
-# Đảo Đèn Lồng · Ba hòn đảo
+# Đảo Đèn Lồng · Giữ sáng tới bình minh
 
-**Video demo: chưa quay.** Phase 2 đã triển khai theo [Ticket-02](docs/Ticket-02.md), Contract **v1.1**. Phase 3/4 chưa phát hành. Tài liệu lab gốc ở [docs/LAB-README.md](docs/LAB-README.md).
+**Video demo: chưa quay.** Phase 3 theo [Ticket-03 — Đèn cạn dầu](docs/Ticket-03.md), Contract **v1.2**. Phase 4 chưa phát hành. Tài liệu lab gốc ở [docs/LAB-README.md](docs/LAB-README.md).
 
-Game 3D góc nhìn thứ ba: cùng Mây thắp đèn ở Đảo Bến, Đảo Cau và Đảo Chuông. Mỗi đèn cần 10 đom đóm; Bóng Mực làm mất Ngọn Lửa, Gió Lạc cướp đom đóm. Thắng đủ ba Đêm để đón Bình Minh.
+Game 3D góc nhìn thứ ba: cùng Mây thắp đèn ở Đảo Bến, Đảo Cau và Đảo Chuông. Mỗi đèn cần 10 đom đóm; Bóng Mực làm mất Ngọn Lửa, Gió Lạc cướp đom đóm. Giữ ít nhất 3/5, 4/6, 5/7 đèn sáng lúc hết giờ từng Đêm để đón Bình Minh. Không thắng sớm khi thắp đủ đèn.
 
 ## Cài và chơi (macOS/Linux)
 
@@ -24,13 +24,15 @@ Mở **http://localhost:4173**. Nếu cổng đang dùng: `PORT=4174 npm start`.
 | Kéo chuột | Xoay camera |
 | Space | Nhảy |
 | Shift | Lướt theo hướng di chuyển hoặc hướng đang nhìn |
-| E | Nạp đèn chưa sáng gần nhất trong 2m |
+| E | Nạp/thắp lại/châm dầu đèn nhận được gần nhất trong 2m |
 | Q | Tỏa Sáng, tốn 3 đom đóm |
 | Esc / P | Tạm dừng: tiếp tục, chơi lại Đêm, cài đặt, về menu |
 
-Bùa đỏ giúp chạy nhanh và lướt không hồi chiêu trong 10s. Bục vàng phóng Mây sang đảo/tầng khác. Đèn đã sáng tạo vùng an toàn 6m. Ngoài mép đảo có thể rơi; mất một lửa và toàn bộ đom đóm rồi hồi sinh sau 1s nếu còn lửa. Đêm 3 có gió báo trước bằng lá bay/âm thanh. Âm lượng và độ nhạy chuột được lưu trên trình duyệt.
+Bùa đỏ giúp chạy nhanh và lướt không hồi chiêu trong 10s. Bục vàng phóng Mây sang đảo/tầng khác. Đèn sáng có ít nhất 30 dầu tạo vùng an toàn 6m. Dưới 30, Bóng Mực wander có thể tới hút dầu. Ngoài mép đảo có thể rơi; mất một lửa và toàn bộ đom đóm rồi hồi sinh sau 1s nếu còn lửa. Đêm 3 có gió báo trước bằng lá bay/âm thanh. Âm lượng, độ nhạy chuột và Bảng màu dễ phân biệt được lưu trên trình duyệt. Chế độ dễ phân biệt đổi viền/mắt Bóng Mực sang xanh lam, cảnh báo trắng kèm ⚠. Đèn tắt xẹp và có vết rách; đèn dưới30 dầu và thanh dầu nhấp nháy 1Hz.
 
-Điểm chuẩn: +10 mỗi đom đóm **nạp**, +100 mỗi đèn thắp, +5 mỗi Bóng Mực trúng Tỏa Sáng. Thắng cộng `floor(giây còn lại) × 2 + 50 × số lửa`. Tổng hành trình chỉ cộng các Đêm đã thắng. Thua được thử lại Đêm hiện tại.
+Đêm 1/2/3 kéo dài **240/270/300 giây**. Đèn thắp lần đầu cần10 đom đóm, có100 dầu, tự hao1 mỗi giây. Đèn sáng nhận châm dầu (+10 dầu mỗi đom đóm, tối đa100). Tắt dầu thì mất tiến độ nạp; đèn từng sáng chỉ cần5 để thắp lại. Bóng đang hút làm hao thêm5 mỗi giây mỗi con. Sức chứa bắt đầu10, tăng2 mỗi lần thắp thành công (kể cả thắp lại), tối đa20.
+
+Điểm: +5 mỗi đom đóm nạp/châm, +100 thắp mới, +40 thắp lại. Pulse trúng Bóng Mực thường +5/con, đang hút dầu +15/con. Thắng lúc bình minh cộng mỗi đèn còn sáng `50 + floor(dầu)` và50 mỗi ngọn lửa. Không thưởng thời gian. Tổng hành trình chỉ cộng các Đêm thắng; hết lửa luôn thua trước dù đúng tick bình minh.
 
 ## Headless và kiểm chứng
 
@@ -40,16 +42,16 @@ Bùa đỏ giúp chạy nhanh và lướt không hồi chiêu trong 10s. Bục v
 node src/headless.mjs --seed 42 --night 2 --ticks 1200 --out /tmp/night2.jsonl --snapshot-every 10
 ```
 
-Hỗ trợ `--night 1|2|3`, `--scenario`, `--inputs`. Sparse frames giữ trường cũ; input pause/dash theo cạnh nhấn. Tick 0 trước input; sự kiện dùng tick kết quả; pause tăng tick nhưng đóng băng sim_tick và gameplay. JSONL gồm snapshot v1.1, event và end. Lỗi input/scenario mã 2; lỗi runtime/ghi output mã 1.
+Hỗ trợ `--night 1|2|3`, `--scenario`, `--inputs`. Sparse frames giữ trường cũ; input pause/dash theo cạnh nhấn. Tick 0 trước input; sự kiện dùng tick kết quả; pause tăng tick nhưng đóng băng sim_tick và gameplay. JSONL gồm snapshot v1.2, event và end. Lỗi input/scenario mã 2; lỗi runtime/ghi output mã 1.
 
 ```sh
 npm run verify
-node scripts/proof-phase2.mjs
+node scripts/proof-phase3.mjs
 ```
 
-`verify` chặn build khi test đỏ. CI chạy test/build. Script proof chạy 8 scenario hai lần so byte và đo Đêm 3 đủ 21.600 tick. Mỗi tính năng có input/output tại [docs/proof/phase-2](docs/proof/phase-2). Giả định, acceptance criteria, lỗi AI, thay test cũ và retro: [docs/notes/phase-2.md](docs/notes/phase-2.md).
+`verify` chặn build khi test đỏ. CI chạy test/build. Script proof chạy10 scenario có assertion hai lần so byte và đo Đêm 3 đủ18.000 tick. Mỗi tính năng có input/output tại [docs/proof/phase-3](docs/proof/phase-3). Giả định, acceptance criteria, lỗi AI, thay test cũ và retro: [docs/notes/phase-3.md](docs/notes/phase-3.md).
 
-Kết quả hiện tại: **35 test đạt**, headless dưới 1s; Chrome headless 1280×720 khoảng **60 FPS** từng Đêm (cửa sổ đo 5s). Xem report.json/browser.json và ảnh trong thư mục proof. FPS là số đo máy phát triển, chưa phải stress test dài ở mật độ tối đa. Chưa có playthrough thủ công trọn ba Đêm hay kiểm tra audio bằng tai.
+Kết quả hiện tại: **53 test đạt**, headless dưới 1s; Chrome headless 1280×720 khoảng **60 FPS** từng Đêm (xem cửa sổ đo trong browser.json). Xem report.json/browser.json và ảnh trong thư mục proof. FPS là số đo máy phát triển, chưa phải stress test dài ở mật độ tối đa. Chưa có playthrough thủ công trọn ba Đêm hay kiểm tra audio bằng tai.
 
 ## Sáng tạo của tôi
 
@@ -58,8 +60,8 @@ Mây đội nón lá treo đèn nhỏ, đảo nổi có mây và cây procedural
 ## Bàn giao và bước tiếp
 
 - Giữ nguyên tag `phase-1` để chạy lại PRD-0 với luật cũ; Phase 2 chuẩn hóa tuning và mở rộng theo Ticket-02.
-- Mốc bàn giao Phase 2: tag `phase-2`; xem checkpoint và bằng chứng để phân biệt mục đã kiểm chứng với giới hạn.
-- Phase 3/4 chờ phát hành. Release `v1.0.0` và video cuối theo lịch Phase 4; hiện chưa tạo Release cuối.
+- Giữ tag `phase-2` cho luật cũ. Phase 3 có mốc bàn giao `phase-3`; ADR, lý do cập nhật test ở docs/notes/phase-3.md và breaking changes ở CHANGELOG.md. Bằng chứng cũ thuộc tag tương ứng, không phải luật hiện tại.
+- Phase 4 chờ phát hành. Release `v1.0.0` và video cuối theo lịch Phase 4; hiện chưa tạo Release cuối.
 - Cần quay mp4 dưới 5 phút và đặt link đầu README khi có video. Cần reviewer độc lập, số liệu token thực tế nếu công cụ cung cấp, xác nhận repo public/tên/deadline theo Coach.
 
 Tài liệu: [CHECKPOINTS](CHECKPOINTS.md), [SUBMISSION](SUBMISSION.md), [RULES](RULES.md), [RUBRIC](RUBRIC.md). Nguồn và giấy phép: [CREDITS](CREDITS.md), [LICENSE](LICENSE).

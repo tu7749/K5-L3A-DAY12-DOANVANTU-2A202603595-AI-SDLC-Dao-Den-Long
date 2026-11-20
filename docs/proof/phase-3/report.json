@@ -1,0 +1,125 @@
+{
+  "system": {
+    "platform": "darwin",
+    "cpu": "Apple M1",
+    "node": "v24.14.1"
+  },
+  "scenarios": [
+    {
+      "name": "fuel-expiry",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 6000,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "refuel",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 1,
+        "state": "playing",
+        "score": 10
+      }
+    },
+    {
+      "name": "relight-on-dawn",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 1,
+        "state": "won",
+        "score": 663
+      }
+    },
+    {
+      "name": "no-early-win",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 60,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "drain-stacking",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 60,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "drain-pulse",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 1,
+        "state": "playing",
+        "score": 15
+      }
+    },
+    {
+      "name": "refuel-safe-ejection",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 30,
+        "state": "playing",
+        "score": 15
+      }
+    },
+    {
+      "name": "dawn-insufficient",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 1,
+        "state": "lost",
+        "score": 0
+      }
+    },
+    {
+      "name": "capacity20",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 1,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "paused-oil",
+      "byte_identical": true,
+      "assertions_passed": true,
+      "end": {
+        "type": "end",
+        "ticks": 120,
+        "state": "paused",
+        "score": 0
+      }
+    }
+  ],
+  "headless": {
+    "ticks": 18000,
+    "elapsed_s": 0.736989416,
+    "limit_s": 30,
+    "passed": true
+  }
+}

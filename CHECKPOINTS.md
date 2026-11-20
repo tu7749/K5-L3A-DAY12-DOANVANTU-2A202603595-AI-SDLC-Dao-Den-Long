@@ -5,7 +5,7 @@
 > Cách làm: [GUIDE.md](GUIDE.md). Nộp bài: [SUBMISSION.md](SUBMISSION.md).
 > Cách trình bày bằng chứng, tên file và cấu trúc thư mục do bạn chọn. Các gợi ý dưới đây chỉ là ví dụ.
 
-> **Trạng thái hiện tại:** Phase 2 đã phát hành và triển khai theo docs/Ticket-02.md. CP3–CP4 chờ ticket. Bằng chứng Phase 2 tại docs/proof/phase-2 và docs/notes/phase-2.md. Rà soát: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).
+> **Trạng thái hiện tại:** Phase 3 đã phát hành và triển khai theo docs/Ticket-03.md. CP4 chờ ticket. ADR và bằng chứng: docs/notes/phase-3.md, CHANGELOG.md, docs/proof/phase-3. Rà soát: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).
 
 ## Lịch 4 giờ
 
@@ -95,15 +95,15 @@ Tự kiểm:
 **Mục tiêu:** xử lý một thay đổi yêu cầu có thể **thay thế** những luật đã có.
 
 Gợi ý:
-- [ ] Đọc kỹ những chỗ ticket nói luật cũ bị thay. Liệt kê những test, tài liệu và giả định cũ bị ảnh hưởng.
-- [ ] Ghi lại ngắn gọn bạn thay đổi thiết kế thế nào và vì sao (một đoạn ngắn là đủ).
-- [ ] Test cũ bị luật mới làm sai: **sửa hoặc bỏ kèm lý do**, không bỏ qua âm thầm.
-- [ ] Chạy lại tất cả kiểm chứng còn hiệu lực.
+- [x] Đọc kỹ những chỗ ticket nói luật cũ bị thay. Liệt kê những test, tài liệu và giả định cũ bị ảnh hưởng.
+- [x] Ghi lại ngắn gọn bạn thay đổi thiết kế thế nào và vì sao (một đoạn ngắn là đủ).
+- [x] Test cũ bị luật mới làm sai: **sửa hoặc bỏ kèm lý do**, không bỏ qua âm thầm.
+- [x] Chạy lại tất cả kiểm chứng còn hiệu lực.
 
 Tự kiểm:
-- [ ] Người khác đọc ghi chú của bạn hiểu được vì sao đổi hướng.
-- [ ] Không còn test bị tắt mà không có lý do.
-- [ ] Đã gắn tag `phase-3` và push.
+- [x] Người khác đọc ghi chú của bạn hiểu được vì sao đổi hướng.
+- [x] Không còn test bị tắt mà không có lý do.
+- [x] Đã gắn tag `phase-3` và push.
 
 ---
 
