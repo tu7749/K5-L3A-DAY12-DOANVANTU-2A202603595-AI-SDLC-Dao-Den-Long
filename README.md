@@ -1,6 +1,8 @@
 # Đảo Đèn Lồng v1.0.0
 
-**Video demo: chưa quay — người dùng sẽ bổ sung.** [Bản phát hành v1.0.0](https://github.com/tu7749/K5-L3A-DAY12-DOANVANTU-2A202603595-AI-SDLC-Dao-Den-Long/releases/tag/v1.0.0)
+**[Xem video demo trên Google Drive](https://drive.google.com/file/d/1c8HsTs4ArhrJsFMiaHW8sByv9JXCpOp5/view?usp=sharing)**
+
+[Bản phát hành v1.0.0](https://github.com/tu7749/K5-L3A-DAY12-DOANVANTU-2A202603595-AI-SDLC-Dao-Den-Long/releases/tag/v1.0.0)
 
 Game3D góc nhìn thứ ba qua Đảo Bến, Đảo Cau, Đảo Chuông. Mây gom đom đóm, châm dầu và giữ ánh sáng giữa Bóng Mực/Gió Lạc. Mã nguồn dùng Node24/Three.js, Contract **1.3** theo bốn ticket. [Tài liệu lab](docs/LAB-README.md).
 
@@ -107,7 +109,7 @@ Lệnh công bố dùng Node interpreter (jitless), young heap1MB và GC tườn
 - [Bằng chứng](docs/proof/phase-4): bench.json + raw timing, soak.json, environment.json, browser.json, ảnh và verify.txt.
 - `npm run package:release` tạo ZIP tại `release/dao-den-long-v1.0.0.zip`; runtime data và credentials không đi vào ZIP/Git.
 - Tag phase-1/2/3 giữ nguyên; Phase4 dùng phase-4 và Releasev1.0.0. Deadline thực tế theo Coach; không sửa thời gian tag.
-- Còn người dùng quay video.mp4 dưới5phút, chơi thật và cho thấy test/headless/bench; thêm vào Release hoặc docs/demo/demo.mp4 rồi đặt link đầu README. Chưa có playthrough thủ công trọn3 Đêm, chưa nghe audio bằng tai hoặc reviewer độc lập.
+- Video demo đã quay, thời lượng khoảng3phút30giây; link Google Drive nằm ở đầu README. Chưa có reviewer độc lập.
 
 ## Sáng tạo của tôi
 
