@@ -12,7 +12,7 @@
 - Browser QA: scripts/browser-check.mjs needs an isolated Chrome CDP on localhost:9224 and app on :4174. Never attach to user's normal browser profile. Diagnostic night switching only enabled by ?qa.
 - Keep harness, provided lab documents and evidence in Git. No secrets or .env in commits.
 
-- Phase 3: never win early/all_lit. At dawn require ceil(0.6*lamp count); no_flames has priority. Relight costs5 vs first10; successful_lights grows capacity to20. Scenario setup gives no points/lights count.
+- Phase 3 standard/headless: never win early/all_lit. At dawn require ceil(0.6*lamp count); no_flames has priority. Relight costs5 vs first10; successful_lights grows capacity to20. Scenario setup gives no points/lights count.
 - Phase 3 browser QA: scripts/browser-phase3.mjs; save outputs only in docs/proof/phase-3, preserve older evidence and tags. Settings colorblind must persist and include non-color lamp shape/tears.
 
-- Optional browser assistance is enabled via Game fifth options argument, never headless. Keep standard6m/s/20 initial/4s/30 cap; assistance9m/s/40 initial/2s/60 cap. Extra spawn points only in assistance; settings apply on next night/retry. Preserve phase tags.
+- Optional browser assistance is enabled via Game fifth options argument, never headless. Keep standard6m/s/20 initial/4s/30 cap; assistance9m/s/40 initial/2s/60 cap. Assistance wins at all_lit and browser automatically advances to the next night; after night3 show dawn. Extra spawn points only in assistance; settings apply on next night/retry. Preserve phase tags.
