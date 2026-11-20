@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Đảo Đèn Lồng · Đêm 1</title><link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head>
+<body>
+<main id="world" aria-label="Game Đảo Đèn Lồng 3D"></main>
+<header><div class="brand"><span class="emblem">✦</span><div>ĐẢO ĐÈN LỒNG<small>ĐÊM 1 · ĐẢO BẾN</small></div></div><button id="pause">Tạm dừng</button></header>
+<section id="hud" aria-live="polite"><div><small>NGỌN LỬA</small><strong id="health"></strong></div><div><small>ĐOM ĐÓM</small><strong id="carry"></strong></div><div><small>ĐÈN ĐÃ THẮP</small><strong id="lit"></strong></div><div><small>TRƯỚC BÌNH MINH</small><strong id="time"></strong></div><div><small>ĐIỂM</small><strong id="score"></strong></div></section>
+<div id="hint">Đi tìm những đốm sáng giữa màn sương.</div><div id="toast" aria-live="polite"></div>
+<footer><span><kbd>W A S D</kbd> di chuyển</span><span><kbd>Space</kbd> nhảy</span><span><kbd>E</kbd> nạp đèn</span><span><kbd>Q</kbd> tỏa sáng · 2 đom đóm</span><span>Kéo chuột để xoay camera</span></footer>
+<section id="overlay"><div class="intro"><span class="eyebrow">MỘT HÀNH TRÌNH NHỎ GIỮA BIỂN MÂY</span><h1>Giữ một đốm sáng.<br>Thắp cả hòn đảo.</h1><p>Bước cùng Mây qua màn sương đen. Gom đom đóm, thắp lại năm Đèn Lồng Lớn và đưa ánh sáng trở về Đảo Bến.</p><div class="rules"><span>✦ Mỗi đèn cần 5 đom đóm</span><span>◈ Ánh đèn xua Bóng Mực</span><span>♡ Giữ lấy 3 ngọn lửa</span></div><button id="start">Bắt đầu Đêm 1</button><small>WASD để đi · E để nạp · Q để tỏa sáng · Space để nhảy</small></div></section>
+<script type="module" src="src/browser.js"></script></body></html>

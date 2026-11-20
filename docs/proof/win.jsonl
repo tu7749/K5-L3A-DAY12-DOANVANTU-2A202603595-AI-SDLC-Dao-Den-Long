@@ -1,0 +1,6 @@
+{"type":"snapshot","tick":0,"sim_tick":0,"state":"playing","time_left_s":300,"score":0,"player":{"pos":[0,0,0],"carried":5,"flames":3},"lanterns":[{"id":"L1","pos":[0,0,0],"lit":false,"deposited":0},{"id":"L2","pos":[21.874,0,7.107],"lit":true,"deposited":0},{"id":"L3","pos":[13.519,0,-18.607],"lit":true,"deposited":0},{"id":"L4","pos":[-13.519,0,-18.607],"lit":true,"deposited":0},{"id":"L5","pos":[-21.874,0,7.107],"lit":true,"deposited":0}],"shades":[],"motes_active":0,"motes":[]}
+{"type":"event","tick":1,"name":"deposit","data":{"lantern_id":"L1","amount":5,"deposited":5}}
+{"type":"event","tick":1,"name":"lantern_lit","data":{"lantern_id":"L1"}}
+{"type":"event","tick":1,"name":"game_over","data":{"result":"won","reason":"all_lit"}}
+{"type":"snapshot","tick":1,"sim_tick":1,"state":"won","time_left_s":299.983,"score":549,"player":{"pos":[0,0,0],"carried":0,"flames":3},"lanterns":[{"id":"L1","pos":[0,0,0],"lit":true,"deposited":5},{"id":"L2","pos":[21.874,0,7.107],"lit":true,"deposited":0},{"id":"L3","pos":[13.519,0,-18.607],"lit":true,"deposited":0},{"id":"L4","pos":[-13.519,0,-18.607],"lit":true,"deposited":0},{"id":"L5","pos":[-21.874,0,7.107],"lit":true,"deposited":0}],"shades":[],"motes_active":0,"motes":[]}
+{"type":"end","ticks":1,"state":"won","score":549}

@@ -1,0 +1,35 @@
+
+> dao-den-long@0.1.0 verify
+> npm test && npm run build
+
+
+> dao-den-long@0.1.0 test
+> node --test
+
+✔ camera-relative movement normalizes diagonal and uses 60 fixed ticks (1.426125ms)
+✔ pickup uses inclusive horizontal radius, capacity and score (0.155083ms)
+✔ scenario setup neither scores nor emits events, lantern overrides merge by id (0.879667ms)
+✔ deposit transfers only missing amount, all-lit wins with bonuses (0.441292ms)
+✔ held interact does not retrigger; releasing then pressing transfers (0.139125ms)
+✔ pulse costs light, stuns, pushes and scores; held pulse never repeats (0.254958ms)
+✔ pulse needs enough light and does not emit if unaffordable (0.069958ms)
+✔ damage drops ceil(carried * ratio), invulnerability prevents repeated hits (0.778083ms)
+✔ lit lantern protects player and prevents shade entry (0.52875ms)
+✔ jump lands; holding jump does not bounce (0.208ms)
+✔ dawn and no_flames have required event reasons (0.083875ms)
+✔ identical seed/input produces byte-identical states and events including spawns (50.474958ms)
+✔ malformed input/scenario is rejected (0.450667ms)
+✔ CLI snapshots tick 0, persists sparse inputs, final end and deterministic bytes (88.009917ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 200.731958
+
+> dao-den-long@0.1.0 build
+> node scripts/build.mjs
+
+Static release built in dist/

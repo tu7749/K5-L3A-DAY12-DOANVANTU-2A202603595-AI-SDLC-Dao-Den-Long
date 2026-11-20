@@ -1,0 +1,1 @@
+{"name":"dao-den-long","version":"0.1.0","private":true,"type":"module","scripts":{"start":"node scripts/serve.mjs","build":"node scripts/build.mjs","headless":"node src/headless.mjs","test":"node --test","verify":"npm test && npm run build"},"dependencies":{"three":"0.180.0"}}
