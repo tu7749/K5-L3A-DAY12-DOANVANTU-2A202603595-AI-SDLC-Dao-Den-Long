@@ -4,8 +4,8 @@ export const distance=(a,b)=>Math.hypot(a[0]-b[0],a[2]-b[2]);
 const direction=(from,to)=>{const d=distance(from,to);return d?[ (to[0]-from[0])/d,(to[2]-from[2])/d]:[1,0];};
 const compare=(a,b)=>a.id.localeCompare(b.id,undefined,{numeric:true});
 export class Game{
-  constructor(tuning,seed=1,scenario={},night=1){
-    this.t=tuning;this.night=night;this.map=makeMap(night);this.seed=seed>>>0;this.tick=0;this.sim_tick=0;this.state='playing';this.score=0;this.previous={};this.events=[];
+  constructor(tuning,seed=1,scenario={},night=1,options={}){
+    this.assistance=options.assistance===true;this.t=tuning;this.night=night;this.map=makeMap(night);this.seed=seed>>>0;this.tick=0;this.sim_tick=0;this.state='playing';this.score=0;this.previous={};this.events=[];
     this.timeTicks=(scenario.time_left_s??tuning[`night${night}_duration_s`])*60;
     const p=scenario.player??{};
     this.player={pos:[...(p.pos??[0,0,0])],vel:[0,0,0],carried:p.carried??0,flames:p.flames??3,grounded:false};
@@ -20,9 +20,14 @@ export class Game{
     });
     this.nextMote=1;this.nextShade=1;this.nextDrifter=1;
     this.motes=[];
+    this.spawnPoints=[...this.map.motePoints];
+    if(this.assistance)for(const center of this.map.centers)for(const radius of [8,18,26])for(let i=0;i<16;i++){
+      const a=i*Math.PI/8,x=center[0]+radius*Math.cos(a),z=center[2]+radius*Math.sin(a),y=floorBelow(night,[x,20,z]);
+      if(Number.isFinite(y)&&!this.spawnPoints.some(p=>distance(p,[x,y,z])<.01&&Math.abs(p[1]-y)<.01))this.spawnPoints.push([x,y,z]);
+    }
     this.randomMotes=scenario.random_motes!==false;this.randomShades=scenario.random_shades!==false;this.randomDrifters=scenario.random_drifters!==false;
     if(scenario.motes)this.motes=scenario.motes.map(m=>this.mote(Array.isArray(m)?m:m.pos,m.kind??'random',m.ttl_s==null?null:Math.round(m.ttl_s*60)));
-    else if(this.randomMotes)for(let i=0;i<20;i++)this.spawnMote();
+    else if(this.randomMotes)for(let i=0;i<(this.assistance?40:20);i++)this.spawnMote();
     this.shades=(scenario.shades??[]).map(s=>this.shade(s));
     this.drifters=(scenario.drifters??[]).map(d=>({id:d.id??`D${this.nextDrifter++}`,pos:[...d.pos],state:d.state??'idle',stolen:d.stolen??0,left:d.state_ticks_left??(d.state==='flee'?240:0),dir:[1,0]}));
     this.charms=(scenario.charms??this.map.charms.map((pos,i)=>({id:`C${i+1}`,pos}))).map(c=>({id:c.id,pos:[...(c.pos??this.map.charms[Number(c.id.slice(1))-1]??[0,0,0])],available:c.available??true,left:c.respawn_ticks??Math.round((c.respawn_s??0)*60)}));
@@ -34,7 +39,7 @@ export class Game{
   random(){this.seed=(Math.imul(1664525,this.seed)+1013904223)>>>0;return this.seed/4294967296;}
   choose(list){return list.length?list[Math.floor(this.random()*list.length)]:null;}
   mote(pos,kind='random',ttl=null){return {id:`M${this.nextMote++}`,pos:[...pos],kind,ttl,born:this.sim_tick};}
-  spawnMote(){if(this.motes.length>=30)return;const free=this.map.motePoints.filter(p=>!this.motes.some(m=>distance(p,m.pos)<.01&&Math.abs(p[1]-m.pos[1])<.01));const p=this.choose(free);if(p)this.motes.push(this.mote(p));}
+  spawnMote(){if(this.motes.length>=(this.assistance?60:30))return;const free=this.spawnPoints.filter(p=>!this.motes.some(m=>distance(p,m.pos)<.01&&Math.abs(p[1]-m.pos[1])<.01));const p=this.choose(free);if(p)this.motes.push(this.mote(p));}
   shade(s){return {id:s.id??`S${this.nextShade++}`,pos:[...s.pos],state:s.state??'chase',left:s.state_ticks_left??0,pushLeft:0,pushDir:[1,0],recoilDir:[1,0],eject:0,target_lantern_id:s.target_lantern_id??null};}
   unique(prefix,list){let k=prefix==='S'?'nextShade':'nextDrifter';while(list.some(e=>e.id===`${prefix}${this[k]}`))this[k]++;return `${prefix}${this[k]++}`;}
   emit(name,data={}){this.events.push({type:'event',tick:this.tick,name,data});}
@@ -90,7 +95,7 @@ export class Game{
     if(Math.hypot(x,z)>.001)this.facing=[x,z];
     if(edge('jump')&&p.grounded){p.vel[1]=7;p.grounded=false;this.emit('jump');}
     if(edge('dash')&&!this.dashTicks&&(this.charm||!this.dashCD)){this.dashTicks=12;this.dashCD=this.charm?0:90;this.dashDir=[...this.facing];this.emit('dash');}
-    const old=[...p.pos],dash=this.dashTicks>0;const speed=this.charm?7.2:6;
+    const old=[...p.pos],dash=this.dashTicks>0;const speed=this.assistance?(this.charm?10.8:9):(this.charm?7.2:6);
     let vx=dash?this.dashDir[0]*14:this.launch?.[0]??x*speed,vz=dash?this.dashDir[1]*14:this.launch?.[1]??z*speed;
     if(this.wind.active){const a=this.wind.dir_deg*Math.PI/180;vx+=Math.cos(a)*2;vz+=Math.sin(a)*2;}
     p.vel[0]=vx;p.vel[2]=vz;p.pos[0]+=vx*DT;p.pos[2]+=vz*DT;
@@ -134,7 +139,7 @@ export class Game{
     if(!this.respawn&&!waiting){for(const d of [...this.drifters].sort(compare))if(d.state==='chase'&&distance(d.pos,p.pos)<=1.2){const amount=Math.min(3,p.carried);p.carried-=amount;d.stolen=amount;d.state='flee';d.left=240;d.dir=direction(p.pos,d.pos);this.emit('drifter_steal',{drifter_id:d.id,amount,carried:p.carried});}
       for(const s of [...this.shades].sort(compare))if(!this.invuln&&s.state==='chase'&&!this.safeEject.has(s.id)&&!this.safe(p.pos)&&distance(s.pos,p.pos)<=1&&Math.abs(s.pos[1]-p.pos[1])<=1.5){const dropped=Math.floor(p.carried/2);p.carried-=dropped;p.flames=Math.max(0,p.flames-1);this.drop(dropped,p.pos);this.invuln=90;s.state='recoil';s.left=60;s.recoilDir=direction(p.pos,s.pos);this.moveShade(s,s.recoilDir,2/60);this.emit('player_hit',{by:'shade',flames:p.flames,dropped});break;}
     }
-    if(this.randomMotes&&this.sim_tick%240===0)this.spawnMote();
+    if(this.randomMotes&&this.sim_tick%(this.assistance?120:240)===0)this.spawnMote();
     if(this.randomShades&&(this.sim_tick===300||(this.sim_tick>300&&(this.sim_tick-300)%this.map.shadeInterval===0))){const count=this.sim_tick===300?2:1;for(let i=0;i<count&&this.shades.length<this.map.shadeMax;i++){const points=this.map.shadePoints.filter(pos=>distance(pos,p.pos)>=15&&!this.safe(pos)&&!this.shades.some(s=>distance(s.pos,pos)<1));const pos=this.choose(points);if(pos){const s=this.shade({id:this.unique('S',this.shades),pos:[pos[0],pos[1]+.8,pos[2]],state:'spawning',state_ticks_left:30});this.shades.push(s);this.emit('shade_spawned',{id:s.id});}}}
     if(this.night>1&&this.randomDrifters&&this.sim_tick%1200===0&&this.drifters.length<2){const pos=this.choose(this.map.shadePoints);this.drifters.push({id:this.unique('D',this.drifters),pos:[pos[0],pos[1]+.8,pos[2]],state:'idle',stolen:0,left:0,dir:[1,0]});}
     if(p.flames<=0)this.finish('lost','no_flames');else if(this.timeTicks<=0){if(this.lanterns.filter(l=>l.lit).length>=Math.ceil(this.t.win_ratio*this.lanterns.length))this.finish('won','dawn_survived');else this.finish('lost','dawn');}return this.events;

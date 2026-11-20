@@ -3,9 +3,9 @@ import {Game,DT,distance} from './game.js';
 import {Campaign} from './campaign.js';
 import {Audio} from './audio.js';
 const {tuning}=await(await fetch('./game.contract.json')).json(),$=s=>document.getElementById(s);
-let settings={volume:.35,sensitivity:.006,colorblind:false};try{Object.assign(settings,JSON.parse(localStorage.getItem('lantern-settings')??'{}'));}catch{}
+let settings={volume:.35,sensitivity:.006,colorblind:false,assistance:true};try{Object.assign(settings,JSON.parse(localStorage.getItem('lantern-settings')??'{}'));}catch{}
 const audio=new Audio(settings.volume),campaign=new Campaign(),keys=new Set();
-let game=new Game(tuning,42),yaw=0,acc=0,last=performance.now(),pulseAge=10,toastAge=0,countdown=-1;
+let game=new Game(tuning,42,{},1,{assistance:settings.assistance}),yaw=0,acc=0,last=performance.now(),pulseAge=10,toastAge=0,countdown=-1;
 const scene=new THREE.Scene();scene.background=new THREE.Color('#0E1430');scene.fog=new THREE.FogExp2('#1B2350',.008);
 const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;$('world').append(renderer.domElement);
 const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,250),ambient=new THREE.AmbientLight('#ffffff',.15);scene.add(ambient);
@@ -44,7 +44,7 @@ function sync(t){const p=game.player;terrain.traverse(o=>{if(o.userData.deck&&o.
     v.bar.scale.x=Math.max(.001,l.fuelUnits/6000);v.bar.position.x=0;v.bar.lookAt(camera.position);v.barBack.lookAt(camera.position);
   });
   const lit=game.lanterns.filter(l=>l.lit).length;ambient.intensity=.15+.55*lit/game.lanterns.length;
-  $('nightLabel').textContent=`ĐÊM ${game.night} · ${game.map.name.toLocaleUpperCase('vi')}`;$('health').textContent='♥ '.repeat(p.flames);$('lit').textContent=`${lit} / ${game.lanterns.length}`;$('score').textContent=game.score;
+  $('nightLabel').textContent=`ĐÊM ${game.night} · ${game.map.name.toLocaleUpperCase('vi')} · ${game.assistance?'HỖ TRỢ':'CHUẨN'}`;$('health').textContent='♥ '.repeat(p.flames);$('lit').textContent=`${lit} / ${game.lanterns.length}`;$('score').textContent=game.score;
   const seconds=Math.ceil(game.time);$('time').textContent=`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;$('hud').classList.toggle('danger',seconds<=30);$('warning').hidden=!(seconds<=30&&settings.colorblind);document.body.classList.toggle('colorblind',settings.colorblind);
   $('slots').innerHTML=Array.from({length:game.capacity},(_,i)=>`<i class="${i<p.carried?'full':''}"></i>`).join('');$('carry').textContent=`${p.carried} / ${game.capacity} đom đóm`;
   $('dash').textContent=`✦ Shift · Lướt ${game.dashCD?(game.dashCD/60).toFixed(1)+'s':'sẵn sàng'}`;$('pulse').textContent=`☀ Q · Tỏa sáng ${game.pulseCD?(game.pulseCD/60).toFixed(1)+'s':'3 đom đóm'}`;$('charm').textContent=game.charm?`Bùa Gió · ${(game.charm/60).toFixed(1)}s`:'';
@@ -56,12 +56,13 @@ function sync(t){const p=game.player;terrain.traverse(o=>{if(o.userData.deck&&o.
 const intros=['Ông Đăng: “Đảo Bến đang ngủ trong sương. Mười đốm sáng đánh thức một chiếc đèn. Hãy châm dầu và giữ ít nhất ba đèn sáng tới bình minh.”','Ông Đăng: “Đảo Cau có hai bờ. Hãy thử bục nhảy và cẩn thận Gió Lạc trên cầu tre.”','Ông Đăng: “Lên tháp chuông qua những dốc sáng. Lá bay báo gió, đừng để mất phương hướng.”'];
 function show(title,description,actions){$('overlay').style.display='flex';$('title').textContent=title;$('description').textContent=description;$('actions').replaceChildren();for(const [label,fn]of actions){const b=document.createElement('button');b.textContent=label;b.onclick=()=>{audio.unlock();fn();};$('actions').append(b);}document.body.dataset.screen=campaign.screen;keys.clear();}
 function intro(){campaign.screen='intro';show(`Đêm ${campaign.night} · ${['Đảo Bến','Đảo Cau','Đảo Chuông'][campaign.night-1]}`,intros[campaign.night-1],[['Vào Đêm',beginNight],['Về menu',menu]]);}
-function beginNight(){game=new Game(tuning,42+campaign.night,{},campaign.night);yaw=0;countdown=-1;pulseAge=10;acc=0;rebuild();campaign.play();$('overlay').style.display='none';document.body.dataset.screen='playing';keys.clear();camera.position.set(0,9,-14);}
+function beginNight(){game=new Game(tuning,42+campaign.night,{},campaign.night,{assistance:settings.assistance});yaw=0;countdown=-1;pulseAge=10;acc=0;rebuild();campaign.play();$('overlay').style.display='none';document.body.dataset.screen='playing';keys.clear();camera.position.set(0,9,-14);}
 function menu(){campaign.reset();show('Giữ một đốm sáng. Thắp ba hòn đảo.','Cùng Mây gom đom đóm, tránh Bóng Mực và Gió Lạc. Đèn cạn dầu sẽ tắt. Châm dầu, thắp lại và giữ đủ 60% đèn sáng tới bình minh. Ba Đêm, một hành trình.',[['Bắt đầu hành trình',()=>{campaign.begin();intro();}],['Cài đặt',openSettings]]);}
 function result(){campaign.result(game);audio.cue(game.state==='won'?'won':'lost');show(game.state==='won'?'Hòn đảo đã thức giấc.':'Đêm vẫn còn chờ Mây.',`Điểm Đêm ${game.night}: ${game.score}. Tổng các Đêm đã thắng: ${campaign.total}.`,[[game.state==='won'?(game.night===3?'Đón Bình Minh':'Đêm kế tiếp'):'Chơi lại Đêm',()=>{campaign.next();if(campaign.screen==='dawn')show('Bình Minh',`Ba hòn đảo đã sáng. Tổng điểm hành trình: ${campaign.total}.`,[['Về menu',menu]]);else intro();}],['Về menu',menu]]);}
 function pause(){if(campaign.screen!=='playing')return;game.step({pause:true});game.step({pause:false});campaign.screen='paused';show('Một khoảng lặng giữa đêm.','Hành trình đang tạm dừng.',[['Tiếp tục',resume],['Chơi lại Đêm',beginNight],['Cài đặt',openSettings],['Về menu',menu]]);}
 function resume(){game.step({pause:true});game.step({pause:false});campaign.play();keys.clear();acc=0;$('overlay').style.display='none';document.body.dataset.screen='playing';}
 function openSettings(){$('settings').showModal();}$('volume').value=settings.volume;$('sensitivity').value=settings.sensitivity;
+$('assistance').checked=settings.assistance;$('assistance').onchange=()=>{settings.assistance=$('assistance').checked;try{localStorage.setItem('lantern-settings',JSON.stringify(settings));}catch{}};
 $('colorblind').checked=settings.colorblind;$('colorblind').onchange=()=>{settings.colorblind=$('colorblind').checked;try{localStorage.setItem('lantern-settings',JSON.stringify(settings));}catch{}};
 for(const id of ['volume','sensitivity'])$(id).oninput=()=>{settings[id]=Number($(id).value);audio.volume=settings.volume;try{localStorage.setItem('lantern-settings',JSON.stringify(settings));}catch{}};
 $('closeSettings').onclick=()=>$('settings').close();$('pause').onclick=pause;

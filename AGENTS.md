@@ -14,3 +14,5 @@
 
 - Phase 3: never win early/all_lit. At dawn require ceil(0.6*lamp count); no_flames has priority. Relight costs5 vs first10; successful_lights grows capacity to20. Scenario setup gives no points/lights count.
 - Phase 3 browser QA: scripts/browser-phase3.mjs; save outputs only in docs/proof/phase-3, preserve older evidence and tags. Settings colorblind must persist and include non-color lamp shape/tears.
+
+- Optional browser assistance is enabled via Game fifth options argument, never headless. Keep standard6m/s/20 initial/4s/30 cap; assistance9m/s/40 initial/2s/60 cap. Extra spawn points only in assistance; settings apply on next night/retry. Preserve phase tags.

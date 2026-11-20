@@ -16,6 +16,10 @@ npm start
 
 Mở **http://localhost:4173**. Nếu cổng đang dùng: `PORT=4174 npm start`. Bản web tĩnh ở `dist/`, không cần CDN sau cài đặt. Muốn nhận bản cập nhật, tải lại trang sau build.
 
+## Chế độ hỗ trợ
+
+Theo yêu cầu chơi dễ hơn, bản trình duyệt mặc định bật **Hỗ trợ**: chạy9m/s (+50%), bắt đầu40 đom đóm, sinh thêm mỗi2s, trần60; thêm điểm sinh hợp lệ trên từng bản đồ. Có bùa thì chạy10.8m/s. Vào Cài đặt để bật/tắt; áp dụng khi bắt đầu/chơi lại Đêm, nhãn HỖ TRỢ/CHUẨN hiện cạnh tên đảo. Headless và chế độ Chuẩn giữ đúng tuning6m/s,20 đom đóm, chu kỳ4s và trần30. Không đổi các tag phase đã nộp.
+
 ## Điều khiển
 
 | Phím | Hành động |
@@ -51,7 +55,7 @@ node scripts/proof-phase3.mjs
 
 `verify` chặn build khi test đỏ. CI chạy test/build. Script proof chạy10 scenario có assertion hai lần so byte và đo Đêm 3 đủ18.000 tick. Mỗi tính năng có input/output tại [docs/proof/phase-3](docs/proof/phase-3). Giả định, acceptance criteria, lỗi AI, thay test cũ và retro: [docs/notes/phase-3.md](docs/notes/phase-3.md).
 
-Kết quả hiện tại: **53 test đạt**, headless dưới 1s; Chrome headless 1280×720 khoảng **60 FPS** từng Đêm (xem cửa sổ đo trong browser.json). Xem report.json/browser.json và ảnh trong thư mục proof. FPS là số đo máy phát triển, chưa phải stress test dài ở mật độ tối đa. Chưa có playthrough thủ công trọn ba Đêm hay kiểm tra audio bằng tai.
+Kết quả hiện tại: **56 test đạt** (gồm3 test hỗ trợ), headless dưới 1s; Chrome headless 1280×720 khoảng **60 FPS** từng Đêm (xem cửa sổ đo trong browser.json). Xem report.json/browser.json và ảnh trong thư mục proof. FPS là số đo máy phát triển, chưa phải stress test dài ở mật độ tối đa. Chưa có playthrough thủ công trọn ba Đêm hay kiểm tra audio bằng tai.
 
 ## Sáng tạo của tôi
 
