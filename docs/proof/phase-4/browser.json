@@ -1,0 +1,22 @@
+{
+  "viewport": [
+    1280,
+    720
+  ],
+  "errors": [],
+  "small_fonts": [],
+  "settings_persisted": {
+    "jump": "J",
+    "reduceMotion": true,
+    "largeText": true
+  },
+  "rebound_jump_works": true,
+  "spawn_arrow": true,
+  "wind_warning": true,
+  "low_fuel_warning": true,
+  "countdown": true,
+  "restore_defaults": true,
+  "score_only_won_nights": true,
+  "leaderboard_persisted_after_server_restart": true,
+  "cli_export_matches": true
+}

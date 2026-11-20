@@ -1,0 +1,87 @@
+
+> dao-den-long@1.0.0 verify
+> npm test && npm run build
+
+
+> dao-den-long@1.0.0 test
+> node --test
+
+✔ assistance is opt-in to core; default contract speed and population stay standard (6.06475ms)
+✔ assistance runs 50% faster and starts with 40 distinct motes on every map (10.291ms)
+✔ assistance spawns twice as often, capped60, while scenario random_motes false remains respected (5.886ms)
+✔ assistance wins immediately when all lamps lit, while standard waits until dawn (0.915084ms)
+✔ assistance requires every lamp and still gives no_flames priority (3.779583ms)
+✔ camera-relative movement normalizes diagonal and uses 60 fixed ticks (1.753542ms)
+✔ pickup uses inclusive horizontal radius, capacity, height and no pickup score (0.206542ms)
+✔ scenario setup neither scores nor emits events, lantern overrides merge by id (0.432625ms)
+✔ deposit lights and scores but all-lit does not end night (9.700375ms)
+✔ held interact does not retrigger; releasing then pressing transfers (0.209167ms)
+✔ pulse costs light, stuns, pushes and scores; held pulse never repeats (0.683542ms)
+✔ pulse needs enough light and does not emit if unaffordable (0.101208ms)
+✔ damage drops floor(carried / 2), invulnerability prevents repeated hits (1.655875ms)
+✔ lit lantern protects player and prevents shade entry (4.085042ms)
+✔ jump lands; holding jump does not bounce (0.437584ms)
+✔ dawn and no_flames have required event reasons (0.239917ms)
+✔ identical seed/input produces byte-identical states and events including spawns (59.071958ms)
+✔ malformed input/scenario is rejected (0.554083ms)
+✔ CLI snapshots tick 0, persists sparse inputs, final end and deterministic bytes (98.351584ms)
+✔ three maps, initial 20 distinct motes, exact lantern coordinates (5.764ms)
+✔ dash travels 2.8m in exactly 12 ticks; edge/cooldown and facing (1.127417ms)
+✔ air dash freezes height for 12 ticks, vulnerable while dashing (0.523375ms)
+✔ pulse uses 3D center; pushes total 4m over first 15 ticks; refreshes stun (8.3565ms)
+✔ safe zone ejects resident shade by 30 ticks without damage (0.379792ms)
+✔ fall ignores invulnerability, loses all, waits 60 ticks and respawns once (0.224958ms)
+✔ no-flames beats dawn survival; enough lights wins at dawn (0.227792ms)
+✔ pause freezes all counters, TTL, movement/spawn; tick still advances (0.368208ms)
+✔ charm boosts run, dash has no cooldown, cannot restart active dash (0.828791ms)
+✔ charm respawns at exactly 2700 ticks after pickup (8.043334ms)
+✔ drifter steals before shade hit, invulnerability does not prevent stealing (0.216833ms)
+✔ pulse chase drifter flees without stealing; stolen flee drops, removed in 120 (0.480125ms)
+✔ dropped motes expire after 480 ticks and cannot be collected on birth tick (2.9525ms)
+✔ scheduled spawn uses sim ticks; mote limit and first 2 shades at tick 300 (10.622625ms)
+✔ night3 wind warns 2s before active, pauses, lasts 300 ticks (10.170208ms)
+✔ night2 pad launches with locked horizontal velocity and lands on other island (0.455167ms)
+✔ night3 surfaces, ramps, vertical walls and tower (0.427667ms)
+✔ campaign counts only wins and retries current night before final dawn (0.129417ms)
+✔ v1.1 schema supports night3 counters, pause and rejects invalid fields (0.431708ms)
+✔ nearest lantern tie uses ascending id and scores deposited motes only (0.136917ms)
+✔ recoil moves hit shade 2m over 60 ticks and prevents more than one hit (0.607458ms)
+✔ scenario lit defaults to 100 fuel and ever_lit, no capacity/score bonus (1.053875ms)
+✔ integer fuel decays exactly 1/s, pauses, and goes out exactly at tick6000 (17.512125ms)
+✔ refuel ceil, clamp to100, consumes motes and +5 per mote; full lamp skipped (0.696917ms)
+✔ full nearer lamp is excluded, lit/unlit nearest tie uses id (7.899709ms)
+✔ first lighting costs10 +150 points, relight costs5 +65, increases capacity (0.235959ms)
+✔ partial relight keeps deposited progress, no bonus until completion (0.109333ms)
+✔ capacity caps20 and scenario successful_lights accepts larger carried (0.6605ms)
+✔ safe threshold uses exact unrounded30, weak lamp no safe zone (0.126625ms)
+✔ multiple drain shades stack on top of natural loss and event every60 simticks (0.840917ms)
+✔ wander targets nearest weak lamp, id tie, chase never switches (0.432709ms)
+✔ drain exits to chase within6 and wander on out-of-range/off target (0.147292ms)
+✔ refuel to30 restores safe zone and ejects drain shade within30 ticks without damage (0.287083ms)
+✔ pulse drain gives15 total; ordinary gives5; exhausted stun returns wander (2.473042ms)
+✔ all lit never wins early; thresholds 3/5 4/6 5/7 at dawn (0.794542ms)
+✔ lamp goes out on dawn tick before counting; same-tick relight counts (0.145666ms)
+✔ no_flames always takes priority on final tick even enough lamps (0.0865ms)
+✔ dawn score per lit fuel floor plus flames, no time bonus (0.080875ms)
+✔ v1.2 scenario validation rejects bad fuel/history/target/capacity (0.233625ms)
+✔ benchmark frame statistics use exact mean, worst1% and nearest-rank p95 (0.927167ms)
+✔ benchmark scene freezes gameplay and has exactly200 wander,100 motes,3 full lamps (56.134334ms)
+✔ rebind every action, detects duplicates without changing originals, reset defaults valid (0.30175ms)
+✔ leaderboard top10, score descending, earlier timestamp wins ties (1.095667ms)
+✔ leaderboard names3–12, timezone, score/nights/seed validated (0.164416ms)
+✔ disk leaderboard persists, invalid save preserves it, CLI exports same entries (47.596708ms)
+✔ soak CLI runs nights in one child and returns one terminal result per night (137.346625ms)
+✔ wander obeys standard shade_speed, including night3 speed4.5 (0.55975ms)
+ℹ tests 66
+ℹ suites 0
+ℹ pass 66
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 323.475333
+
+> dao-den-long@1.0.0 build
+> node scripts/build.mjs
+
+Static release built in dist/

@@ -1,0 +1,6 @@
+{
+  "worktree_pattern_candidates": [],
+  "history_pattern_candidate_files": 0,
+  "sensitive_tracked_filenames": [],
+  "limits": "Pattern scan only; does not prove absence of every kind of secret."
+}

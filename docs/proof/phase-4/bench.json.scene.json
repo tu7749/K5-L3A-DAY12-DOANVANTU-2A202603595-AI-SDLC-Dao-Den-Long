@@ -1,0 +1,47 @@
+{
+  "warmup_s": 3,
+  "duration_s": 30,
+  "window": {
+    "left": 22,
+    "top": 47,
+    "width": 1280,
+    "height": 720,
+    "windowState": "normal"
+  },
+  "scene": {
+    "first_camera": [
+      30,
+      15,
+      0
+    ],
+    "viewport": [
+      1280,
+      720
+    ],
+    "shades": 200,
+    "shade_states": [
+      "wander"
+    ],
+    "motes": 100,
+    "player_pos": [
+      0,
+      0,
+      0
+    ],
+    "lit": [
+      {
+        "id": "L1",
+        "fuel": 100
+      },
+      {
+        "id": "L2",
+        "fuel": 100
+      },
+      {
+        "id": "L3",
+        "fuel": 100
+      }
+    ],
+    "time_left_s": 240
+  }
+}

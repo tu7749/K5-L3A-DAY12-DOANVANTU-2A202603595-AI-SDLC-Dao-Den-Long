@@ -5,7 +5,7 @@
 > Cách làm: [GUIDE.md](GUIDE.md). Nộp bài: [SUBMISSION.md](SUBMISSION.md).
 > Cách trình bày bằng chứng, tên file và cấu trúc thư mục do bạn chọn. Các gợi ý dưới đây chỉ là ví dụ.
 
-> **Trạng thái hiện tại:** Phase 3 đã phát hành và triển khai theo docs/Ticket-03.md. CP4 chờ ticket. ADR và bằng chứng: docs/notes/phase-3.md, CHANGELOG.md, docs/proof/phase-3. Rà soát: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).
+> **Trạng thái hiện tại:** Phase 4 triển khai theo docs/Ticket-04.md, Contract1.3. Bằng chứng ở docs/proof/phase-4; retro ở docs/RETRO.md. Video chờ người dùng quay. Rà soát: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).
 
 ## Lịch 4 giờ
 
@@ -45,7 +45,7 @@ Mỗi checkpoint phase (CP1 đến CP4) có cùng một khung, nhưng nội dung
 **Mục tiêu:** có môi trường làm việc và repo sẵn sàng. Nên chuẩn bị **trước** buổi lab nếu có thể. Nếu không, làm ngay đầu giờ Phase 1.
 
 Việc cần làm:
-- [ ] Tạo **repo cá nhân, public** trên GitHub, đặt tên theo [SUBMISSION.md](SUBMISSION.md).
+- [x] Tạo **repo cá nhân, public** trên GitHub, đặt tên theo [SUBMISSION.md](SUBMISSION.md).
 - [x] Chọn công cụ AI, engine và ngôn ngữ. Cài và chạy thử một chương trình "hello" 3D hoặc headless để chắc môi trường ổn.
 - [ ] Đăng nhập claude.ai, mở lab board, thử mở tab Phase 1 và hỏi trợ giảng một câu bất kỳ để chắc trợ giảng hoạt động.
 - [x] Tạo sẵn nơi ghi chép (một file hoặc một thư mục tùy bạn) cho giả định, nhật ký dùng AI và bằng chứng.
@@ -68,7 +68,7 @@ Gợi ý:
 - [ ] Làm đúng các bàn giao liệt kê trong PRD-0.
 
 Tự kiểm:
-- [ ] Clone sạch, làm theo README của bạn, chạy được game.
+- [x] Clone sạch, làm theo README của bạn, chạy được game.
 - [x] Mỗi yêu cầu chính có bằng chứng; chỗ chưa đạt đã ghi.
 - [x] Đã gắn tag `phase-1` và push.
 
@@ -112,14 +112,14 @@ Tự kiểm:
 **Mục tiêu:** đưa sản phẩm đến mức phát hành được, đo được, cài đặt dễ.
 
 Gợi ý:
-- [ ] Đọc các yêu cầu có **số đo cụ thể** trong ticket. Với mỗi yêu cầu đo, chạy thật và lưu kết quả cùng cấu hình máy.
-- [ ] Làm sạch README: người khác clone sạch, làm theo, chạy được trong tối đa 3 lệnh.
-- [ ] Đảm bảo file bản quyền, ghi nguồn asset, giấy phép.
-- [ ] Tạo bản phát hành chạy được (file thực thi, thư mục web tĩnh hoặc Docker) và GitHub Release `v1.0.0`.
+- [x] Đọc các yêu cầu có **số đo cụ thể** trong ticket. Với mỗi yêu cầu đo, chạy thật và lưu kết quả cùng cấu hình máy.
+- [x] Làm sạch README: người khác clone sạch, làm theo, chạy được trong tối đa 3 lệnh.
+- [x] Đảm bảo file bản quyền, ghi nguồn asset, giấy phép.
+- [x] Tạo bản phát hành chạy được (file thực thi, thư mục web tĩnh hoặc Docker) và GitHub Release `v1.0.0`.
 
 Tự kiểm:
-- [ ] Thử trên một thư mục sạch hoặc máy khác, không dùng cấu hình sẵn của bạn.
-- [ ] Đã gắn tag `phase-4` và tạo Release `v1.0.0`.
+- [x] Thử trên một thư mục sạch hoặc máy khác, không dùng cấu hình sẵn của bạn.
+- [x] Đã gắn tag `phase-4` và tạo Release `v1.0.0`.
 
 ---
 
@@ -130,5 +130,5 @@ Tự kiểm:
 - [x] **Retro ngắn:** điều gì hiệu quả hoặc không khi làm với AI; những lần AI sai và cách bạn phát hiện; harness nào giúp nhiều nhất; token/chi phí ước tính và cách bạn tiết kiệm; nếu làm lại thì đổi gì.
 - [ ] **Video demo `.mp4` dưới 5 phút**: chơi thử và cho thấy bằng chứng game chạy đúng. Đính kèm Release `v1.0.0` hoặc commit vào `docs/demo/demo.mp4` (dưới 100 MB). Đặt link ở đầu README.
 - [x] Rà soát repo: không có `.env` được track; quét mẫu khóa phổ biến trong lịch sử không có ứng viên. Harness còn trong lịch sử. Quét mẫu không bảo đảm phát hiện mọi loại bí mật.
-- [ ] Rà soát bằng danh sách ở [SUBMISSION.md](SUBMISSION.md) mục "Checklist trước khi nộp".
+- [x] Rà soát bằng danh sách ở [SUBMISSION.md](SUBMISSION.md) mục "Checklist trước khi nộp".
 - [ ] Nộp link repo public theo hướng dẫn của Coach.

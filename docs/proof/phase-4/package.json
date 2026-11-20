@@ -1,0 +1,7 @@
+{
+  "files_compared": 22,
+  "all_bundled_files_match_source": true,
+  "zip_bytes": 433109,
+  "sha256": "9ad649b2f4d13db81101db4324d2a2cd7b508c0e4c761551aea2e1eac4ced864",
+  "release_export_cli": "node scripts/serve.mjs --export-leaderboard out.json executed successfully in bundle without npm install"
+}

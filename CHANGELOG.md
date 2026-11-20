@@ -18,3 +18,12 @@ Chuẩn hóa số liệu; ba bản đồ, dash, Gió Lạc, Bùa Gió, gió, pau
 ## Phase 1 — Contract v1.0
 
 Bản đầu PRD-0, game3D và headless. Bằng chứng/giả định ban đầu: tag phase-1.
+
+## Phase 4 — Contract v1.3 / release v1.0.0
+
+- Benchmark CLI: cửa sổ1280×720, cảnh chuẩn200 wander/100 motes/3 lit, camera chuẩn, warmup và công thức dt/avg/p1/p95 thực; null RSS cho web có giải thích.
+- Soak10 Đêm một process, input seeded, RSS thực và reset; công bố runtime jitless/GC. Giữ cả kết quả chưa đạt ban đầu.
+- Bảng điểm top10 lưu đĩa qua API local, export qua run_cmd; web tĩnh fallback localStorage+download. Chỉ lưu tổng các Đêm thắng.
+- Rebind đủ9 hành động, duplicate detection, restore, persistence. Chữ18px/×1.25, reduced motion, thông báo hướng spawn/gió/countdown/dầu yếu.
+- Sửa bug wander dùng1m/s về4/4.5m/s theo số chuẩn; thêm regression. Các luật dầu/drain/win/score Phase3 giữ nguyên.
+- Đóng gói ZIP tự chứa assets, API server không cần npm install, README/ảnh/credits/retro đầy đủ. Tạo phase-4 và v1.0.0; video chờ người dùng quay.

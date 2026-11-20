@@ -1,0 +1,9 @@
+{
+  "cpu": "Apple M1",
+  "cores": 8,
+  "ram_mb": 16384,
+  "os": "darwin 24.6.0",
+  "arch": "arm64",
+  "node": "v24.14.1",
+  "mode": "Benchmark: isolated Chrome app window1280x720; QA: isolated headless Chrome; local laptop; power profile not recorded"
+}
