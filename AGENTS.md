@@ -21,3 +21,6 @@
 - Benchmark opens isolated Chrome app at1280x720; 3s warmup, frame dt metrics, peak_mem_mb=null for web. Never replace metrics with constants. Soak measures real RSS, uses published jitless/GC runtime flags.
 - Leaderboard saves via local server API to .local/leaderboard.json; ignore runtime data. Static fallback localStorage has UI export; CLI export reads disk server data.
 - Release: npm run package:release; never include secrets/runtime profiles/data. GitHub credential helper remains memory-only. Keep phase tags immutable after push. Video belongs to user; do not claim it exists until provided.
+
+- Post-release Studio: ?demo only; no studio under ?qa or ?benchmark. Keep persistent DEMO badge, block leaderboard submission, never use staged scenes as proof of normal play. Pure demo helpers live separately from Game; do not change gameplay contract.
+- Geometry cache is shared: never dispose shared geometry during rebuild/entity removal. Dispose per-object materials normally. Recording pixel ratio1, quality1.5, low.75; extra fill lighting only in demo.

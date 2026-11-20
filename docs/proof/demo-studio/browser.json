@@ -1,0 +1,24 @@
+{
+  "viewport": [
+    1280,
+    720
+  ],
+  "device_scale": 2,
+  "errors": [],
+  "real_interaction_after_teleport": true,
+  "freeze_and_invincibility": true,
+  "geometry_pool": {
+    "before": 39,
+    "after": 39
+  },
+  "average_fps": 60.00263747857003,
+  "pixel_ratios": {
+    "quality": 1.5,
+    "low": 0.75,
+    "recording": 1
+  },
+  "auto_next_night": true,
+  "demo_scores_blocked": true,
+  "phase4_shortcuts": true,
+  "normal_has_no_tools": true
+}

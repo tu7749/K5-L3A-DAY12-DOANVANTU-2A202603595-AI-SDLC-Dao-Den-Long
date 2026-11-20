@@ -1,0 +1,18 @@
+{
+  "src/game.js": {
+    "matches_v1_0_0": true,
+    "sha256": "78f31e3056cf386553c8fbe9952682340298a1d690e65ee2c90b20524917cd54"
+  },
+  "src/headless.mjs": {
+    "matches_v1_0_0": true,
+    "sha256": "d88f87b4aa6b1d10fee12c5de89a8ecb14c50071cf1b53e9c218fb00abcc25a9"
+  },
+  "src/maps.js": {
+    "matches_v1_0_0": true,
+    "sha256": "01c7cbd3add0301e0b00033c3eb570b70cac14f1824b50152f48975af04a3e41"
+  },
+  "game.contract.json": {
+    "matches_v1_0_0": true,
+    "sha256": "b6d7a15fa511b16a7277a217fbe6737223ddbb0263af2b1a69dd7b3809f3e4a2"
+  }
+}

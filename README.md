@@ -22,6 +22,16 @@ Mở **http://localhost:4173**. Nếu cổng bận: `PORT=4174 npm start`. Sau c
 
 Bản ZIP ở Release đã chứa thư viện: giải nén, chạy `node scripts/serve.mjs`, mở URL trên, không cần npm install. Hướng dẫn nằm trong README.txt của ZIP. Có thể host `dist/` riêng như web tĩnh.
 
+## Studio demo để quay video
+
+Bản `main` sau Release có công cụ demo; không sửa các tag đã nộp. Chạy `npm run build` rồi `npm start`, mở **http://localhost:4173/?demo** hoặc chọn **Studio demo** từ menu.
+
+- Chọn trực tiếp cả3 Đêm và các cảnh minh họa tính năng Phase1–4: nhặt/thắp, bục/Bùa, Gió Lạc, hút dầu, tháp và Bình Minh; có nút mở Cài đặt/Bảng điểm Phase4.
+- Công cụ: nạp đầy túi, hồi máu, thêm60s, châm dầu, đến đèn kế, thêm đom đóm/Bóng Mực, thắp tất cả. Cuộn panel xuống để bật bất tử, khóa giờ, đom đóm vô hạn, bỏ hồi chiêu, ánh sáng rõ, camera bay và khung hình gọn.
+- Bấm **Đóng công cụ demo** trước khi quay; nhãn DEMO vẫn hiện. Đây là cảnh có can thiệp trên bản hiện tại, không phải phiên bản lịch sử hay bằng chứng chơi Chuẩn. Điểm demo không được lưu.
+- Cài đặt → Đồ họa → **Quay demo** dùng pixel ratio tối đa1; Chất lượng cao1.5; Máy yếu0.75. Tái sử dụng geometry giảm cấp phát khi chuyển cảnh. Ánh sáng bổ sung chỉ có trong Studio; benchmark không bật công cụ demo.
+- Chrome QA1280×720 ở DPR2: khoảng60FPS, geometry39→39 qua nhiều lần chuyển cảnh;73 test đạt. Xem docs/proof/demo-studio. Số đo/bảnZIP trong Releasev1.0.0 vẫn thuộc tag phát hành cũ.
+
 ## Điều khiển và luật
 
 | Phím mặc định | Hành động |
@@ -63,7 +73,7 @@ npm run verify
 node src/headless.mjs --seed 42 --night 2 --ticks 1200 --out /tmp/night2.jsonl --snapshot-every 10
 ```
 
-`verify` chạy66 test rồi build; test đỏ chặn build. CI chạy lại test/build và soak. Headless chỉ cần Node, không cần GPU/Three.js. Hỗ trợ night1–3, scenario/inputs, sparse frames, nút theo cạnh. Snapshot0 trước input; pause tăng tick nhưng đóng băng sim_tick/timer. Invalid scenario/input mã2, lỗi runtime/output mã1. Tuning/lệnh chuẩn nằm trong [game.contract.json](game.contract.json).
+`verify` hiện chạy73 test rồi build (Releasev1.0.0 có66 test); test đỏ chặn build. CI chạy lại test/build và soak. Headless chỉ cần Node, không cần GPU/Three.js. Hỗ trợ night1–3, scenario/inputs, sparse frames, nút theo cạnh. Snapshot0 trước input; pause tăng tick nhưng đóng băng sim_tick/timer. Invalid scenario/input mã2, lỗi runtime/output mã1. Tuning/lệnh chuẩn nằm trong [game.contract.json](game.contract.json).
 
 Scenario hồi quy Phase3: `node scripts/proof-phase3.mjs` (ghi lại proof Phase3 khi chạy, muốn tái lập nguyên trạng cũ hãy checkout tag phase-3). Các bằng chứng Phase1/2/3 thuộc tag tương ứng; không đánh đồng output luật cũ với bản1.3.
 

@@ -27,3 +27,9 @@ Bản đầu PRD-0, game3D và headless. Bằng chứng/giả định ban đầu
 - Rebind đủ9 hành động, duplicate detection, restore, persistence. Chữ18px/×1.25, reduced motion, thông báo hướng spawn/gió/countdown/dầu yếu.
 - Sửa bug wander dùng1m/s về4/4.5m/s theo số chuẩn; thêm regression. Các luật dầu/drain/win/score Phase3 giữ nguyên.
 - Đóng gói ZIP tự chứa assets, API server không cần npm install, README/ảnh/credits/retro đầy đủ. Tạo phase-4 và v1.0.0; video chờ người dùng quay.
+
+## Sau v1.0.0 — Studio demo trên nhánh main
+
+- Công cụ thử nghiệm có nhãnDEMO: chọn3Đêm/cảnh tính năng, nạp/hồi/dịch chuyển/thêm thời gian/đèn/mote/shade, khóa giờ/bất tử/túi vô hạn/cooldown. Không lưu điểm demo.
+- Đồ họa recording/quality/low, geometry cache dùng chung, danh sách occluder tính khi dựng cảnh, ánh sáng bổ sung/camera orbit chỉ trong Studio.
+- Giữ Game/contract, các tag phase-1…4 và Releasev1.0.0; các cảnh chỉ minh họa tính năng trên code hiện tại. Bằng chứng riêng tại docs/proof/demo-studio.

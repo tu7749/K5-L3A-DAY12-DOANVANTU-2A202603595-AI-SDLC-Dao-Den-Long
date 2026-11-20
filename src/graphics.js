@@ -1,0 +1,2 @@
+export const GRAPHICS_PROFILES={recording:{label:'Quay demo · sắc nét 720p, nhẹ GPU',maxRatio:1},quality:{label:'Chất lượng cao · màn hình Retina',maxRatio:1.5},low:{label:'Máy yếu · ưu tiên mượt',maxRatio:.75}};
+export function graphicsProfile(name,dpr=1){const key=Object.hasOwn(GRAPHICS_PROFILES,name)?name:'recording';return {name:key,...GRAPHICS_PROFILES[key],ratio:Math.min(Math.max(.5,dpr),GRAPHICS_PROFILES[key].maxRatio)};}
