@@ -1,0 +1,18 @@
+{
+  "random_motes": false,
+  "random_shades": false,
+  "random_drifters": false,
+  "player": {
+    "carried": 10
+  },
+  "drifters": [
+    {
+      "id": "D1",
+      "pos": [
+        0,
+        0.8,
+        0
+      ]
+    }
+  ]
+}

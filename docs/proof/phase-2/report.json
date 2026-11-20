@@ -1,0 +1,112 @@
+{
+  "system": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M1",
+    "node": "v24.14.1"
+  },
+  "scenarios": [
+    {
+      "name": "dash",
+      "night": 1,
+      "ticks": 12,
+      "byte_identical": true,
+      "end": {
+        "type": "end",
+        "ticks": 12,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "pause",
+      "night": 1,
+      "ticks": 70,
+      "byte_identical": true,
+      "end": {
+        "type": "end",
+        "ticks": 70,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "charm",
+      "night": 2,
+      "ticks": 40,
+      "byte_identical": true,
+      "end": {
+        "type": "end",
+        "ticks": 40,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "drifter-steal-drop",
+      "night": 2,
+      "ticks": 125,
+      "byte_identical": true,
+      "end": {
+        "type": "end",
+        "ticks": 125,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "wind",
+      "night": 3,
+      "ticks": 2100,
+      "byte_identical": true,
+      "end": {
+        "type": "end",
+        "ticks": 2100,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "pad-night2",
+      "night": 2,
+      "ticks": 95,
+      "byte_identical": true,
+      "end": {
+        "type": "end",
+        "ticks": 95,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "pad-night3",
+      "night": 3,
+      "ticks": 75,
+      "byte_identical": true,
+      "end": {
+        "type": "end",
+        "ticks": 75,
+        "state": "playing",
+        "score": 0
+      }
+    },
+    {
+      "name": "spawn",
+      "night": 2,
+      "ticks": 1201,
+      "byte_identical": true,
+      "end": {
+        "type": "end",
+        "ticks": 1201,
+        "state": "playing",
+        "score": 0
+      }
+    }
+  ],
+  "headless": {
+    "ticks": 21600,
+    "elapsed_s": 0.8587842079999999,
+    "limit_s": 30,
+    "passed": true
+  }
+}

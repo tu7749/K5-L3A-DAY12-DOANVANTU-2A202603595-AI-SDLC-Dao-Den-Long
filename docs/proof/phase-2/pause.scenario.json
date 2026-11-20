@@ -1,0 +1,8 @@
+{
+  "random_motes": false,
+  "random_shades": false,
+  "random_drifters": false,
+  "player": {
+    "dash_cd_ticks": 60
+  }
+}

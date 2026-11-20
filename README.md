@@ -1,12 +1,12 @@
-# Đảo Đèn Lồng
+# Đảo Đèn Lồng · Ba hòn đảo
 
-**Video demo: chưa quay.** Bản triển khai Phase 1 theo PRD-0 / Test Contract v1.0. Mốc bàn giao hiện tại: `phase-1`. Phase 2–4 chưa phát hành và chưa cần thực hiện (người dùng xác nhận); Release cuối sẽ làm ở Phase 4. README gốc được giữ tại [docs/LAB-README.md](docs/LAB-README.md).
+**Video demo: chưa quay.** Phase 2 đã triển khai theo [Ticket-02](docs/Ticket-02.md), Contract **v1.1**. Phase 3/4 chưa phát hành. Tài liệu lab gốc ở [docs/LAB-README.md](docs/LAB-README.md).
 
-Game 3D góc nhìn thứ ba: cùng Mây gom đom đóm, thắp năm chiếc đèn và tránh Bóng Mực trước bình minh.
+Game 3D góc nhìn thứ ba: cùng Mây thắp đèn ở Đảo Bến, Đảo Cau và Đảo Chuông. Mỗi đèn cần 10 đom đóm; Bóng Mực làm mất Ngọn Lửa, Gió Lạc cướp đom đóm. Thắng đủ ba Đêm để đón Bình Minh.
 
-## Cài đặt và chơi
+## Cài và chơi (macOS/Linux)
 
-Cần Node.js 24, npm, trình duyệt hỗ trợ WebGL trên macOS/Linux. Chạy tại gốc repo:
+Cần Node.js 24, npm và trình duyệt WebGL. Trong repo:
 
 ```sh
 npm ci
@@ -14,53 +14,52 @@ npm run build
 npm start
 ```
 
-Mở **http://localhost:4173**. Sau cài đặt, không cần CDN. `dist/` là bản web tĩnh để đóng gói, cần phục vụ qua HTTP. Chưa kiểm tra hình ảnh trực tiếp bằng trình duyệt trong phiên này.
+Mở **http://localhost:4173**. Nếu cổng đang dùng: `PORT=4174 npm start`. Bản web tĩnh ở `dist/`, không cần CDN sau cài đặt. Muốn nhận bản cập nhật, tải lại trang sau build.
 
 ## Điều khiển
 
 | Phím | Hành động |
 | --- | --- |
-| WASD | Di chuyển theo camera |
+| WASD | Đi theo camera; A trái, D phải |
 | Kéo chuột | Xoay camera |
 | Space | Nhảy |
-| E | Nạp đèn gần nhất |
-| Q | Tỏa sáng, tốn 2 đom đóm |
-| Escape / Tạm dừng | Tạm dừng và tiếp tục |
+| Shift | Lướt theo hướng di chuyển hoặc hướng đang nhìn |
+| E | Nạp đèn chưa sáng gần nhất trong 2m |
+| Q | Tỏa Sáng, tốn 3 đom đóm |
+| Esc / P | Tạm dừng: tiếp tục, chơi lại Đêm, cài đặt, về menu |
 
-Mỗi đèn cần 5 đom đóm, mang tối đa 10. Thắp đủ 5 đèn để thắng. Hết 3 ngọn lửa hoặc hết 300 giây thì thua. Đèn sáng bảo vệ trong 6m. Bấm **Chơi lại Đêm 1** sau khi kết thúc.
+Bùa đỏ giúp chạy nhanh và lướt không hồi chiêu trong 10s. Bục vàng phóng Mây sang đảo/tầng khác. Đèn đã sáng tạo vùng an toàn 6m. Ngoài mép đảo có thể rơi; mất một lửa và toàn bộ đom đóm rồi hồi sinh sau 1s nếu còn lửa. Đêm 3 có gió báo trước bằng lá bay/âm thanh. Âm lượng và độ nhạy chuột được lưu trên trình duyệt.
 
-Điểm: 10 mỗi lần nhặt, 100 mỗi đèn, 20 mỗi Bóng Mực trúng pulse. Thắng cộng phần nguyên giây còn lại và 50 mỗi ngọn lửa còn lại. Tuning tại [game.contract.json](game.contract.json) được browser và headless đọc chung. Không phạt rơi: mép đảo chặn người chơi, `fall_enabled=false`.
+Điểm chuẩn: +10 mỗi đom đóm **nạp**, +100 mỗi đèn thắp, +5 mỗi Bóng Mực trúng Tỏa Sáng. Thắng cộng `floor(giây còn lại) × 2 + 50 × số lửa`. Tổng hành trình chỉ cộng các Đêm đã thắng. Thua được thử lại Đêm hiện tại.
 
 ## Headless và kiểm chứng
 
-Không cần Three.js, GPU hay cửa sổ, chỉ cần Node:
+[game.contract.json](game.contract.json) ở gốc repo khai báo tuning, build/run/headless. Chạy không cần GPU/Three.js, chỉ Node:
 
 ```sh
-node src/headless.mjs --seed 42 --night 1 --ticks 600 --out /tmp/dao-den-long.jsonl --snapshot-every 10
+node src/headless.mjs --seed 42 --night 2 --ticks 1200 --out /tmp/night2.jsonl --snapshot-every 10
 ```
 
-Scenario chiến thắng một tick, đèn dựng sẵn không cộng điểm:
+Hỗ trợ `--night 1|2|3`, `--scenario`, `--inputs`. Sparse frames giữ trường cũ; input pause/dash theo cạnh nhấn. Tick 0 trước input; sự kiện dùng tick kết quả; pause tăng tick nhưng đóng băng sim_tick và gameplay. JSONL gồm snapshot v1.1, event và end. Lỗi input/scenario mã 2; lỗi runtime/ghi output mã 1.
 
 ```sh
-node src/headless.mjs --seed 42 --night 1 --scenario docs/proof/scenario.json --inputs docs/proof/inputs.json --ticks 60 --out /tmp/win.jsonl --snapshot-every 1
+npm run verify
+node scripts/proof-phase2.mjs
 ```
 
-Test: `npm test`. Kiểm tra và build: `npm run verify`, build chỉ chạy khi test xanh. CI chạy lại khi push/PR. Bằng chứng tại [docs/proof](docs/proof), giả định và nhật ký tại [docs/notes/phase-1.md](docs/notes/phase-1.md).
+`verify` chặn build khi test đỏ. CI chạy test/build. Script proof chạy 8 scenario hai lần so byte và đo Đêm 3 đủ 21.600 tick. Mỗi tính năng có input/output tại [docs/proof/phase-2](docs/proof/phase-2). Giả định, acceptance criteria, lỗi AI, thay test cũ và retro: [docs/notes/phase-2.md](docs/notes/phase-2.md).
 
-Snapshot 0 trước input; sparse frames giữ giá trị; nút kích hoạt false→true; mỗi bước 1/60 giây; event dùng tick sau bước. JSONL kết thúc bằng dòng end. Dữ liệu sai mã 2, lỗi chạy/ghi output mã 1. Cùng seed/scenario/input cho cùng byte output.
+Kết quả hiện tại: **35 test đạt**, headless dưới 1s; Chrome headless 1280×720 khoảng **60 FPS** từng Đêm (cửa sổ đo 5s). Xem report.json/browser.json và ảnh trong thư mục proof. FPS là số đo máy phát triển, chưa phải stress test dài ở mật độ tối đa. Chưa có playthrough thủ công trọn ba Đêm hay kiểm tra audio bằng tai.
 
 ## Sáng tạo của tôi
 
-Đảo nổi giữa tầng mây, cây và đá procedural, vòng sáng quanh đèn, sương mỏng dần, vệt pulse và lời nhắc hành trình. Các chi tiết thuộc renderer, không thêm thực thể gameplay vào headless. Test kiểm tra tính tất định lõi dùng chung; chưa có ảnh bằng chứng đồ họa.
+Mây đội nón lá treo đèn nhỏ, đảo nổi có mây và cây procedural, vệt tỏa sáng, lời Ông Đăng và hiệu ứng làm mờ tầng che Mây. Chi tiết trang trí không thêm thực thể gameplay. Âm thanh tổng hợp trong trình duyệt, không dùng asset ngoài. Logic/bản đồ dùng chung browser và headless; tính tất định có test.
 
-## Các bước tiếp theo
+## Bàn giao và bước tiếp
 
-- Khi phát hành: tiếp nhận Ticket-02/03/04 rồi triển khai tương ứng. Hiện chưa đến phạm vi này.
-- Chơi thử trực tiếp, reviewer độc lập, ảnh và video mp4 dưới 5 phút.
-- Số liệu token/chi phí thực tế, hiệu năng theo ticket khi có.
-- Commit/tag đúng mốc từng phase, push repo public, Release v1.0.0. Không dựng lịch sử phase giả.
-- Tên repo theo SUBMISSION cần hậu tố `-Dao-Den-Long`, hiện chưa đổi tên.
+- Giữ nguyên tag `phase-1` để chạy lại PRD-0 với luật cũ; Phase 2 chuẩn hóa tuning và mở rộng theo Ticket-02.
+- Mốc bàn giao Phase 2: tag `phase-2`; xem checkpoint và bằng chứng để phân biệt mục đã kiểm chứng với giới hạn.
+- Phase 3/4 chờ phát hành. Release `v1.0.0` và video cuối theo lịch Phase 4; hiện chưa tạo Release cuối.
+- Cần quay mp4 dưới 5 phút và đặt link đầu README khi có video. Cần reviewer độc lập, số liệu token thực tế nếu công cụ cung cấp, xác nhận repo public/tên/deadline theo Coach.
 
-Tài liệu lab: [CHECKPOINTS](CHECKPOINTS.md), [GUIDE](GUIDE.md), [SUBMISSION](SUBMISSION.md), [RULES](RULES.md), [RUBRIC](RUBRIC.md). Nguồn: [CREDITS](CREDITS.md), giấy phép: [LICENSE](LICENSE).
-
-Rà soát checkpoint Phase 1: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).
+Tài liệu: [CHECKPOINTS](CHECKPOINTS.md), [SUBMISSION](SUBMISSION.md), [RULES](RULES.md), [RUBRIC](RUBRIC.md). Nguồn và giấy phép: [CREDITS](CREDITS.md), [LICENSE](LICENSE).

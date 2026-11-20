@@ -5,7 +5,7 @@
 > Cách làm: [GUIDE.md](GUIDE.md). Nộp bài: [SUBMISSION.md](SUBMISSION.md).
 > Cách trình bày bằng chứng, tên file và cấu trúc thư mục do bạn chọn. Các gợi ý dưới đây chỉ là ví dụ.
 
-> **Trạng thái hiện tại:** chỉ Phase 1 đã phát hành (người dùng xác nhận). CP2–CP4 chờ ticket; chưa đến hạn thực hiện. Rà soát: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).
+> **Trạng thái hiện tại:** Phase 2 đã phát hành và triển khai theo docs/Ticket-02.md. CP3–CP4 chờ ticket. Bằng chứng Phase 2 tại docs/proof/phase-2 và docs/notes/phase-2.md. Rà soát: [docs/proof/checkpoint-audit.md](docs/proof/checkpoint-audit.md).
 
 ## Lịch 4 giờ
 
@@ -79,14 +79,14 @@ Tự kiểm:
 **Mục tiêu:** tiếp nhận yêu cầu mới, mở rộng sản phẩm mà không làm hỏng những gì đã đúng.
 
 Gợi ý:
-- [ ] Đọc ticket, so với những giả định ở Phase 1. Chỗ nào ticket đã làm rõ hoặc đổi, cập nhật giả định.
-- [ ] Viết kế hoạch kiểm chứng cho phần mới **trước** khi code.
-- [ ] Chạy lại toàn bộ kiểm chứng của Phase 1 sau khi tích hợp.
-- [ ] Rà soát harness: agent có sai lặp lại không? Đã đến lúc thêm một dòng vào hướng dẫn, một skill hay một hook chưa?
+- [x] Đọc ticket, so với những giả định ở Phase 1. Chỗ nào ticket đã làm rõ hoặc đổi, cập nhật giả định.
+- [x] Viết kế hoạch kiểm chứng cho phần mới **trước** khi code.
+- [x] Chạy lại toàn bộ kiểm chứng của Phase 1 sau khi tích hợp.
+- [x] Rà soát harness: agent có sai lặp lại không? Đã đến lúc thêm một dòng vào hướng dẫn, một skill hay một hook chưa?
 
 Tự kiểm:
-- [ ] Phần mới có bằng chứng; phần cũ không bị hỏng (hoặc có lý do rõ ràng nếu đổi).
-- [ ] Đã gắn tag `phase-2` và push.
+- [x] Phần mới có bằng chứng; phần cũ không bị hỏng (hoặc có lý do rõ ràng nếu đổi).
+- [x] Đã gắn tag `phase-2` và push.
 
 ---
 

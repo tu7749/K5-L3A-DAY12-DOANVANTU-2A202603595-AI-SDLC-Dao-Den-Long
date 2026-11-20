@@ -1,0 +1,56 @@
+
+> dao-den-long@0.1.0 verify
+> npm test && npm run build
+
+
+> dao-den-long@0.1.0 test
+> node --test
+
+✔ camera-relative movement normalizes diagonal and uses 60 fixed ticks (1.609417ms)
+✔ pickup uses inclusive horizontal radius, capacity, height and no pickup score (0.185708ms)
+✔ scenario setup neither scores nor emits events, lantern overrides merge by id (0.381458ms)
+✔ deposit transfers only missing amount, all-lit wins with bonuses (0.225333ms)
+✔ held interact does not retrigger; releasing then pressing transfers (0.610291ms)
+✔ pulse costs light, stuns, pushes and scores; held pulse never repeats (0.515125ms)
+✔ pulse needs enough light and does not emit if unaffordable (0.090667ms)
+✔ damage drops floor(carried / 2), invulnerability prevents repeated hits (0.635291ms)
+✔ lit lantern protects player and prevents shade entry (1.533291ms)
+✔ jump lands; holding jump does not bounce (0.380459ms)
+✔ dawn and no_flames have required event reasons (0.1585ms)
+✔ identical seed/input produces byte-identical states and events including spawns (47.029167ms)
+✔ malformed input/scenario is rejected (0.534959ms)
+✔ CLI snapshots tick 0, persists sparse inputs, final end and deterministic bytes (94.007708ms)
+✔ three maps, initial 20 distinct motes, exact lantern coordinates (2.811666ms)
+✔ dash travels 2.8m in exactly 12 ticks; edge/cooldown and facing (1.054833ms)
+✔ air dash freezes height for 12 ticks, vulnerable while dashing (0.506125ms)
+✔ pulse uses 3D center; pushes total 4m over first 15 ticks; refreshes stun (7.986ms)
+✔ safe zone ejects resident shade by 30 ticks without damage (0.287417ms)
+✔ fall ignores invulnerability, loses all, waits 60 ticks and respawns once (0.197375ms)
+✔ no-flames beats all-lit; all-lit beats dawn on final tick (0.205792ms)
+✔ pause freezes all counters, TTL, movement/spawn; tick still advances (0.313875ms)
+✔ charm boosts run, dash has no cooldown, cannot restart active dash (0.181333ms)
+✔ charm respawns at exactly 2700 ticks after pickup (5.372958ms)
+✔ drifter steals before shade hit, invulnerability does not prevent stealing (0.327667ms)
+✔ pulse chase drifter flees without stealing; stolen flee drops, removed in 120 (0.508791ms)
+✔ dropped motes expire after 480 ticks and cannot be collected on birth tick (1.204667ms)
+✔ scheduled spawn uses sim ticks; mote limit and first 2 shades at tick 300 (3.689041ms)
+✔ night3 wind warns 2s before active, pauses, lasts 300 ticks (6.491583ms)
+✔ night2 pad launches with locked horizontal velocity and lands on other island (0.400541ms)
+✔ night3 surfaces, ramps, vertical walls and tower (0.515ms)
+✔ campaign counts only wins and retries current night before final dawn (0.128709ms)
+✔ v1.1 schema supports night3 counters, pause and rejects invalid fields (0.41325ms)
+✔ nearest lantern tie uses ascending id and scores deposited motes only (0.121375ms)
+✔ recoil moves hit shade 2m over 60 ticks and prevents more than one hit (0.542459ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 205.8865
+
+> dao-den-long@0.1.0 build
+> node scripts/build.mjs
+
+Static release built in dist/
